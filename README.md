@@ -21,8 +21,8 @@ rational values.
 ## Setup
 
 ```bash
-conda env create -f environment.yml      # Python 3.12, env name staged-pandora
-conda activate staged-pandora
+conda env create -f environment.yml      # Python 3.12, env name staged-pandora-box
+conda activate staged-pandora-box
 ```
 
 `sympy` is needed only by the switching certificate and `matplotlib` only by the staging report.

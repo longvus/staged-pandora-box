@@ -1,4 +1,4 @@
-name: staged-pandora
+name: staged-pandora-box
 channels:
   - conda-forge
 dependencies:

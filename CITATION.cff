@@ -5,6 +5,7 @@ title: "The Staged Pandora's Box: code and verification records"
 version: 1.0.0
 date-released: 2026-11-02
 license: MIT
+repository-code: "https://github.com/longvus/staged-pandora-box"
 authors:
   - family-names: Vu
     given-names: Long
