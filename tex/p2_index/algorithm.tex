@@ -11,12 +11,12 @@ complexity and the qualification for continuous laws.
 \small
 \begin{algorithmic}[1]
 \Require Initial state $S_0$, fixed planning law, ladders, collectable sets and costs
-\Function{ArmCaps}{$i,T$}
+\Function{CoveredCall}{$i,T$}
   \If{arm $i$ has no collectable stage left at $T$}
     \State \Return $(-\infty,\delta_{-\infty})$ \Comment{point mass at $-\infty$}
   \EndIf
   \State For each possible next reading $y$, obtain
-  \Statex \hspace{\algorithmicindent} $(\cdot,\mu_y)\gets\Call{ArmCaps}{i,F(T,i,y)}$
+  \Statex \hspace{\algorithmicindent} $(\cdot,\mu_y)\gets\Call{CoveredCall}{i,F(T,i,y)}$
   \State Form the law of $W=\max\{\Yc(Y),Z_Y\}$ using
   \Statex \hspace{\algorithmicindent} $Y\sim p_\theta(\cdot\mid T,i)$ and $Z_Y\mid Y=y\sim\mu_y$
   \State Solve for the unique $g$ with $\E[(W-g)^+\mid T,i]=c(T,i)$
@@ -26,7 +26,7 @@ complexity and the qualification for continuous laws.
   \State $S\gets S_0$
   \While{$\cI(S)\ne\varnothing$}
     \ForAll{$i\in\cI(S)$}
-      \State $(G_i,\cdot)\gets\Call{ArmCaps}{i,S}$
+      \State $(G_i,\cdot)\gets\Call{CoveredCall}{i,S}$
     \EndFor
     \If{$\max_{i\in\cI(S)}G_i\le q(S)$}
       \State \textbf{break}
