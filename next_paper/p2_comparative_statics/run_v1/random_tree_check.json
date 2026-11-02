@@ -1,0 +1,679 @@
+[
+  {
+    "pair": 0,
+    "depth": 4,
+    "extra": [
+      2,
+      4
+    ],
+    "cost_factor": "1",
+    "value_base": "35939/102400",
+    "value_larger": "4313/6400",
+    "formula": "33069/102400"
+  },
+  {
+    "pair": 1,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "1",
+    "value_base": "50957/102400",
+    "value_larger": "186917/204800",
+    "formula": "85003/204800"
+  },
+  {
+    "pair": 2,
+    "depth": 2,
+    "extra": [
+      1,
+      2
+    ],
+    "cost_factor": "3/4",
+    "value_base": "7607/12800",
+    "value_larger": "4261/6400",
+    "formula": "183/2560"
+  },
+  {
+    "pair": 3,
+    "depth": 4,
+    "extra": [
+      2,
+      4
+    ],
+    "cost_factor": "1",
+    "value_base": "1787347/3276800",
+    "value_larger": "26121/40960",
+    "formula": "302333/3276800"
+  },
+  {
+    "pair": 4,
+    "depth": 4,
+    "extra": [
+      3,
+      4
+    ],
+    "cost_factor": "1",
+    "value_base": "625761/819200",
+    "value_larger": "1665/2048",
+    "formula": "40239/819200"
+  },
+  {
+    "pair": 5,
+    "depth": 2,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "10683/12800",
+    "value_larger": "10683/12800",
+    "formula": "0"
+  },
+  {
+    "pair": 6,
+    "depth": 4,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "46437/51200",
+    "value_larger": "46437/51200",
+    "formula": "0"
+  },
+  {
+    "pair": 7,
+    "depth": 4,
+    "extra": [
+      3,
+      4
+    ],
+    "cost_factor": "1/2",
+    "value_base": "743/800",
+    "value_larger": "48723/51200",
+    "formula": "1171/51200"
+  },
+  {
+    "pair": 8,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "3/4",
+    "value_base": "71279/102400",
+    "value_larger": "5803/6400",
+    "formula": "21569/102400"
+  },
+  {
+    "pair": 9,
+    "depth": 2,
+    "extra": [
+      1
+    ],
+    "cost_factor": "3/4",
+    "value_base": "1341/1600",
+    "value_larger": "1387/1600",
+    "formula": "23/800"
+  },
+  {
+    "pair": 10,
+    "depth": 4,
+    "extra": [
+      1,
+      3,
+      4
+    ],
+    "cost_factor": "3/4",
+    "value_base": "11827/12800",
+    "value_larger": "6007/6400",
+    "formula": "187/12800"
+  },
+  {
+    "pair": 11,
+    "depth": 3,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "709/800",
+    "value_larger": "709/800",
+    "formula": "0"
+  },
+  {
+    "pair": 12,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "1",
+    "value_base": "289283/409600",
+    "value_larger": "6047/6400",
+    "formula": "3909/16384"
+  },
+  {
+    "pair": 13,
+    "depth": 3,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "74133/102400",
+    "value_larger": "74133/102400",
+    "formula": "0"
+  },
+  {
+    "pair": 14,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "1/2",
+    "value_base": "136183/204800",
+    "value_larger": "18839/20480",
+    "formula": "52207/204800"
+  },
+  {
+    "pair": 15,
+    "depth": 4,
+    "extra": [],
+    "cost_factor": "3/4",
+    "value_base": "1875587/3276800",
+    "value_larger": "1028117/1638400",
+    "formula": "180647/3276800"
+  },
+  {
+    "pair": 16,
+    "depth": 4,
+    "extra": [],
+    "cost_factor": "1/2",
+    "value_base": "311391/409600",
+    "value_larger": "263587/327680",
+    "formula": "72371/1638400"
+  },
+  {
+    "pair": 17,
+    "depth": 4,
+    "extra": [
+      1,
+      2,
+      4
+    ],
+    "cost_factor": "3/4",
+    "value_base": "1478207/1638400",
+    "value_larger": "376831/409600",
+    "formula": "29117/1638400"
+  },
+  {
+    "pair": 18,
+    "depth": 2,
+    "extra": [
+      1,
+      2
+    ],
+    "cost_factor": "3/4",
+    "value_base": "2509/3200",
+    "value_larger": "10377/12800",
+    "formula": "341/12800"
+  },
+  {
+    "pair": 19,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "3/4",
+    "value_base": "74099/102400",
+    "value_larger": "19901/25600",
+    "formula": "1101/20480"
+  },
+  {
+    "pair": 20,
+    "depth": 3,
+    "extra": [
+      3
+    ],
+    "cost_factor": "1/2",
+    "value_base": "173/200",
+    "value_larger": "87/100",
+    "formula": "1/200"
+  },
+  {
+    "pair": 21,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "1/2",
+    "value_base": "2897/3200",
+    "value_larger": "24473/25600",
+    "formula": "1297/25600"
+  },
+  {
+    "pair": 22,
+    "depth": 2,
+    "extra": [
+      1,
+      2
+    ],
+    "cost_factor": "1/2",
+    "value_base": "8677/12800",
+    "value_larger": "2753/3200",
+    "formula": "467/2560"
+  },
+  {
+    "pair": 23,
+    "depth": 4,
+    "extra": [
+      1,
+      3,
+      4
+    ],
+    "cost_factor": "1",
+    "value_base": "2449/3200",
+    "value_larger": "157131/204800",
+    "formula": "79/40960"
+  },
+  {
+    "pair": 24,
+    "depth": 4,
+    "extra": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "cost_factor": "1",
+    "value_base": "909303/1638400",
+    "value_larger": "298099/409600",
+    "formula": "283093/1638400"
+  },
+  {
+    "pair": 25,
+    "depth": 4,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "5039/6400",
+    "value_larger": "5039/6400",
+    "formula": "0"
+  },
+  {
+    "pair": 26,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "3/4",
+    "value_base": "19683/40960",
+    "value_larger": "96319/102400",
+    "formula": "94223/204800"
+  },
+  {
+    "pair": 27,
+    "depth": 2,
+    "extra": [
+      1,
+      2
+    ],
+    "cost_factor": "1/2",
+    "value_base": "8363/12800",
+    "value_larger": "1409/1600",
+    "formula": "2909/12800"
+  },
+  {
+    "pair": 28,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "3/4",
+    "value_base": "164141/204800",
+    "value_larger": "174307/204800",
+    "formula": "5083/102400"
+  },
+  {
+    "pair": 29,
+    "depth": 4,
+    "extra": [
+      4
+    ],
+    "cost_factor": "1/2",
+    "value_base": "463/640",
+    "value_larger": "321309/409600",
+    "formula": "24989/409600"
+  },
+  {
+    "pair": 30,
+    "depth": 4,
+    "extra": [
+      1,
+      3,
+      4
+    ],
+    "cost_factor": "1/2",
+    "value_base": "904781/1638400",
+    "value_larger": "27927/40960",
+    "formula": "212299/1638400"
+  },
+  {
+    "pair": 31,
+    "depth": 3,
+    "extra": [
+      3
+    ],
+    "cost_factor": "1/2",
+    "value_base": "59103/102400",
+    "value_larger": "67839/102400",
+    "formula": "273/3200"
+  },
+  {
+    "pair": 32,
+    "depth": 3,
+    "extra": [
+      3
+    ],
+    "cost_factor": "3/4",
+    "value_base": "131961/204800",
+    "value_larger": "68487/102400",
+    "formula": "5013/204800"
+  },
+  {
+    "pair": 33,
+    "depth": 3,
+    "extra": [
+      2,
+      3
+    ],
+    "cost_factor": "3/4",
+    "value_base": "109907/204800",
+    "value_larger": "75637/102400",
+    "formula": "41367/204800"
+  },
+  {
+    "pair": 34,
+    "depth": 3,
+    "extra": [],
+    "cost_factor": "1/2",
+    "value_base": "467/640",
+    "value_larger": "21089/25600",
+    "formula": "2409/25600"
+  },
+  {
+    "pair": 35,
+    "depth": 3,
+    "extra": [],
+    "cost_factor": "1/2",
+    "value_base": "1843/3200",
+    "value_larger": "1959/3200",
+    "formula": "29/800"
+  },
+  {
+    "pair": 36,
+    "depth": 4,
+    "extra": [
+      1,
+      2
+    ],
+    "cost_factor": "3/4",
+    "value_base": "56379/102400",
+    "value_larger": "130371/204800",
+    "formula": "17613/204800"
+  },
+  {
+    "pair": 37,
+    "depth": 3,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "5781/6400",
+    "value_larger": "5781/6400",
+    "formula": "0"
+  },
+  {
+    "pair": 38,
+    "depth": 4,
+    "extra": [
+      1,
+      2,
+      4
+    ],
+    "cost_factor": "1",
+    "value_base": "493943/819200",
+    "value_larger": "226199/327680",
+    "formula": "143109/1638400"
+  },
+  {
+    "pair": 39,
+    "depth": 2,
+    "extra": [
+      2
+    ],
+    "cost_factor": "1/2",
+    "value_base": "2601/3200",
+    "value_larger": "5651/6400",
+    "formula": "449/6400"
+  },
+  {
+    "pair": 40,
+    "depth": 3,
+    "extra": [
+      2
+    ],
+    "cost_factor": "3/4",
+    "value_base": "5897/6400",
+    "value_larger": "95727/102400",
+    "formula": "55/4096"
+  },
+  {
+    "pair": 41,
+    "depth": 2,
+    "extra": [
+      2
+    ],
+    "cost_factor": "1",
+    "value_base": "23/32",
+    "value_larger": "23/32",
+    "formula": "0"
+  },
+  {
+    "pair": 42,
+    "depth": 3,
+    "extra": [
+      3
+    ],
+    "cost_factor": "1/2",
+    "value_base": "311/320",
+    "value_larger": "313/320",
+    "formula": "1/160"
+  },
+  {
+    "pair": 43,
+    "depth": 2,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "15393/25600",
+    "value_larger": "15393/25600",
+    "formula": "0"
+  },
+  {
+    "pair": 44,
+    "depth": 2,
+    "extra": [
+      1,
+      2
+    ],
+    "cost_factor": "3/4",
+    "value_base": "489/800",
+    "value_larger": "4243/6400",
+    "formula": "331/6400"
+  },
+  {
+    "pair": 45,
+    "depth": 3,
+    "extra": [
+      1
+    ],
+    "cost_factor": "1/2",
+    "value_base": "35661/51200",
+    "value_larger": "158593/204800",
+    "formula": "15949/204800"
+  },
+  {
+    "pair": 46,
+    "depth": 2,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "337/400",
+    "value_larger": "337/400",
+    "formula": "0"
+  },
+  {
+    "pair": 47,
+    "depth": 4,
+    "extra": [
+      2,
+      4
+    ],
+    "cost_factor": "3/4",
+    "value_base": "357699/819200",
+    "value_larger": "1288999/1638400",
+    "formula": "573601/1638400"
+  },
+  {
+    "pair": 48,
+    "depth": 2,
+    "extra": [
+      1
+    ],
+    "cost_factor": "1/2",
+    "value_base": "3/4",
+    "value_larger": "22673/25600",
+    "formula": "3473/25600"
+  },
+  {
+    "pair": 49,
+    "depth": 4,
+    "extra": [
+      1
+    ],
+    "cost_factor": "3/4",
+    "value_base": "4881/6400",
+    "value_larger": "647151/819200",
+    "formula": "22383/819200"
+  },
+  {
+    "pair": 50,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "1/2",
+    "value_base": "41771/51200",
+    "value_larger": "277/320",
+    "formula": "2549/51200"
+  },
+  {
+    "pair": 51,
+    "depth": 4,
+    "extra": [
+      3
+    ],
+    "cost_factor": "1/2",
+    "value_base": "1688487/3276800",
+    "value_larger": "2573349/3276800",
+    "formula": "442431/1638400"
+  },
+  {
+    "pair": 52,
+    "depth": 4,
+    "extra": [],
+    "cost_factor": "1/2",
+    "value_base": "162109/204800",
+    "value_larger": "143929/163840",
+    "formula": "71209/819200"
+  },
+  {
+    "pair": 53,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "1",
+    "value_base": "101317/204800",
+    "value_larger": "22391/40960",
+    "formula": "5319/102400"
+  },
+  {
+    "pair": 54,
+    "depth": 2,
+    "extra": [
+      2
+    ],
+    "cost_factor": "1",
+    "value_base": "1973/3200",
+    "value_larger": "1973/3200",
+    "formula": "0"
+  },
+  {
+    "pair": 55,
+    "depth": 2,
+    "extra": [
+      2
+    ],
+    "cost_factor": "1",
+    "value_base": "7437/12800",
+    "value_larger": "7437/12800",
+    "formula": "0"
+  },
+  {
+    "pair": 56,
+    "depth": 2,
+    "extra": [],
+    "cost_factor": "1",
+    "value_base": "11513/12800",
+    "value_larger": "11513/12800",
+    "formula": "0"
+  },
+  {
+    "pair": 57,
+    "depth": 3,
+    "extra": [
+      1,
+      2,
+      3
+    ],
+    "cost_factor": "3/4",
+    "value_base": "9339/25600",
+    "value_larger": "341/400",
+    "formula": "2497/5120"
+  },
+  {
+    "pair": 58,
+    "depth": 3,
+    "extra": [],
+    "cost_factor": "1/2",
+    "value_base": "173/200",
+    "value_larger": "1847/2048",
+    "formula": "1887/51200"
+  },
+  {
+    "pair": 59,
+    "depth": 2,
+    "extra": [
+      2
+    ],
+    "cost_factor": "1/2",
+    "value_base": "1129/1280",
+    "value_larger": "601/640",
+    "formula": "73/1280"
+  }
+]

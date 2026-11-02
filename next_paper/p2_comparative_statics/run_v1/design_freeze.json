@@ -1,0 +1,14 @@
+{
+  "frozen_at_utc": "2026-11-02T05:49:43.004299+00:00",
+  "staging_records_sha256": "8ade7fe834e99e8fba405159b02baaadd00323cd4c9ba7dcae6e67bbefbd6dd0",
+  "sources": {
+    "p2_comparative_statics_study.py": "49593591e0eae4d57dc44058da0c92dd7be7eaa79952e5abd52af0badac44238",
+    "staged_pandora_exact.py": "1682800b340ef37ece19fc44f149ca1fbd60847d7c1982e5c6ce75a4e1ac1386",
+    "p2_staging_study.py": "aa1403902ff254d1e227537b5c231899438e4b1493efa0c533461ade8aba920e"
+  },
+  "random_seed": 20261030,
+  "random_pairs": 60,
+  "python": "3.12.12 | packaged by conda-forge | (main, Jan 27 2026, 00:01:15) [Clang 19.1.7 ]",
+  "executable": "/Users/longvu/miniconda3/envs/mdp-hpo/bin/python",
+  "platform": "macOS-14.0-arm64-arm-64bit"
+}

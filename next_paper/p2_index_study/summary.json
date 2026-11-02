@@ -1,0 +1,133 @@
+{
+  "instances": 192,
+  "nodes": 23839,
+  "actions": 37467,
+  "exact_failures": 0,
+  "history_example": {
+    "histories": [
+      [
+        0,
+        "1/2"
+      ],
+      [
+        1,
+        "1/2"
+      ]
+    ],
+    "incumbent": "1/2",
+    "indices": [
+      "-1/10",
+      "9/10"
+    ],
+    "collectable": [
+      2,
+      3
+    ]
+  },
+  "regimes": {
+    "all": {
+      "instances": 48,
+      "nodes": 2238,
+      "actions": 3366,
+      "optimal_gain": "2259317/102400",
+      "policies": {
+        "index": {
+          "loss": "0",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss_share": 0.0
+        },
+        "committed": {
+          "loss": "51337/51200",
+          "stop_loss": "74813/102400",
+          "advance_loss": "27861/102400",
+          "loss_share": 0.04544470740493698
+        },
+        "recomputed": {
+          "loss": "51337/51200",
+          "stop_loss": "74813/102400",
+          "advance_loss": "27861/102400",
+          "loss_share": 0.04544470740493698
+        }
+      }
+    },
+    "terminal": {
+      "instances": 48,
+      "nodes": 10470,
+      "actions": 16130,
+      "optimal_gain": "19578787/819200",
+      "policies": {
+        "index": {
+          "loss": "0",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss_share": 0.0
+        },
+        "committed": {
+          "loss": "2983061/6553600",
+          "stop_loss": "23669/655360",
+          "advance_loss": "2746371/6553600",
+          "loss_share": 0.01904523630600813
+        },
+        "recomputed": {
+          "loss": "656749/6553600",
+          "stop_loss": "190601/6553600",
+          "advance_loss": "116537/1638400",
+          "loss_share": 0.004192988309234888
+        }
+      }
+    },
+    "mixed13": {
+      "instances": 48,
+      "nodes": 2382,
+      "actions": 3494,
+      "optimal_gain": "4164287/204800",
+      "policies": {
+        "index": {
+          "loss": "0",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss_share": 0.0
+        },
+        "committed": {
+          "loss": "48133/102400",
+          "stop_loss": "60857/204800",
+          "advance_loss": "35409/204800",
+          "loss_share": 0.02311704260537278
+        },
+        "recomputed": {
+          "loss": "43703/102400",
+          "stop_loss": "60857/204800",
+          "advance_loss": "26549/204800",
+          "loss_share": 0.02098942748182342
+        }
+      }
+    },
+    "mixed24": {
+      "instances": 48,
+      "nodes": 8749,
+      "actions": 14477,
+      "optimal_gain": "73984263/3276800",
+      "policies": {
+        "index": {
+          "loss": "0",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss_share": 0.0
+        },
+        "committed": {
+          "loss": "4529941/6553600",
+          "stop_loss": "2551329/6553600",
+          "advance_loss": "494653/1638400",
+          "loss_share": 0.030614219945666012
+        },
+        "recomputed": {
+          "loss": "38553/65536",
+          "stop_loss": "183253/409600",
+          "advance_loss": "230813/1638400",
+          "loss_share": 0.026054865208294364
+        }
+      }
+    }
+  }
+}

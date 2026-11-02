@@ -1,0 +1,369 @@
+\section{Supporting Results for Shared Laws}
+\label{app:sharing}
+
+\subsection{Own-arm-law limits and conditional stopping}
+
+\begin{proof}[Proof of Proposition~\ref{prop:no-local}]
+Let $q_0=0$. Arm $A$ has one collectable reward $R\sim\operatorname{Bernoulli}(1/2)$ at cost
+$0.4$. Arm $B$ has a noncollectable signal $U\sim\operatorname{Bernoulli}(1/2)$ and a
+collectable reward identically zero; each of its stages costs $0.01$. In the first instance
+$U$ and $R$ are independent; in the second $U=R$. The separate arm laws are identical at the
+root, with $G_A=0.2$ and $G_B=-0.02$ in both instances.
+In the independent instance, starting $A$ has value $0.5-0.4=0.10$. Starting $B$ costs $0.01$
+before the same optimal $A$ decision, giving $0.09$; its zero terminal reward is never worth
+buying. In the shared instance, after observing $U=h$ the only potentially profitable action
+is to inspect $A$, with net return $h-0.4$. Thus
+$Q^\star(B)=-0.01+\E[\max\{0,R-0.4\}]=0.29$ exactly. Starting $A$ still has value $0.10$:
+after its reward is known neither stage of $B$ can improve the incumbent or supply useful
+information. The value $G_B=-0.02$ also follows from
+$\Phi_B(r)=\max\{-0.01,(0-r)^+-0.02\}$ for a run restricted to $B$.
+Stopping gives zero. Thus the unique optimal first actions are $A$ and $B$, respectively.
+A rule with the stated inputs must choose the same action distribution in both, but optimality
+requires probability one on different actions.
+\end{proof}
+
+For the general operational planning law, write
+$\mathcal R=\{S:\max_{i\in\cI(S)}G_i(S)\le q(S)\}$,
+with $\max\varnothing=-\infty$, for the arm-local index stopping region.
+\begin{proposition}[Continuation and conditional stopping]\label{prop:stop-any}
+Under Assumption~\ref{assm:standing}, at every $S\notin\mathcal R$,
+\[
+V^\star(S)\ge h(S)+\max_{i\in\cI(S)}\Phi_i^{(\nu_i)}(S;q(S))>h(S).
+\]
+If $\mathcal R$ is \emph{closed forward}, meaning that $F(S,i,Y)\in\mathcal R$ almost surely
+for every $S\in\mathcal R$ and available $i$, then $V^\star(S)=h(S)$ on $\mathcal R$.
+Under this additional hypothesis, $\mathcal R$ is exactly the optimal stopping region.
+\end{proposition}
+\begin{proof}
+An attaining single-arm rule exists by finite-horizon backward induction.
+Executing it and then stopping is admissible, with value
+$h(S)+\Phi_i^{(\nu_i)}(S;q(S))$, proving the first assertion.
+For the second, induct on the total stages remaining. At a state in $\mathcal R$, closure and
+the induction hypothesis give $V^\star(S')=h(S')$ after every possible first advance.
+Therefore
+\[
+Q^\star(S,i)=h(S)+\E[(\Yc-q(S))^+\mid S,i]-c(S,i)
+\le h(S)+\Phi_i^{(\nu_i)}(S;q(S))\le h(S).
+\]
+The Bellman equation proves stopping optimal; the exhausted-state base case is immediate.
+\end{proof}
+
+\begin{example}[A premature index stop]\label{ex:shared-stop}
+In the construction above, change $A$'s cost to $0.6$. Its index is now $-0.1$, while $B$'s
+remains $-0.02$. The arm-local index stops at value zero, but buying $U$ and inspecting $A$
+only when $U=1$ has value $-0.01+\tfrac12(1-0.6)=0.19$. Forward closure fails: after that
+signal equals one, $A$'s index is $0.4>q_0$.
+\end{example}
+
+Closure quantifies over every available advance in $\mathcal R$, including those
+the index never takes. It is sufficient, not necessary. Independent arms have
+the exact stopping rule without it: an arm's own observation may raise its index
+after an unprofitable initial inspection. The positive-run assertion concerns a
+specified single-arm rule, rather than the utility of repeatedly recomputing and
+switching under a general shared law. We do not establish closure for general
+shared surrogates, including correlated Gaussian-process models.
+
+\subsection{Proof of Proposition~\ref{prop:switching}}
+\label{app:switching}
+
+\begin{example}[The switching family]\label{ex:switching}
+Let $\Theta\in\{0,1\}$ have prior $p=\Prob(\Theta=1)$ and let arms $A,B$, each with two
+stages, be conditionally independent given $\Theta$. Arm $i$ has terminal reward
+$R_i\in\{0,1\}$ with $\Prob(R_i=1\mid\Theta=0)=\alpha_i$ and $\Prob(R_i=1\mid\Theta=1)=1/5$,
+where $\alpha_A=4/5$ and $\alpha_B=7/10$, and first reading $u_iS_i$, where $S_i\in\{0,1\}$
+equals $R_i$ with probability $3/4$ given $R_i$, $u_A=2/5$ and $u_B=3/5$. First stages cost
+$1/100$, terminal stages cost $c\in[19/100,1/5]$, and $q_0=0$. Arm $A$'s terminal reward is
+more likely to be one when $\Theta=0$, and equally likely when $\Theta=1$;
+arm $B$ has the larger intermediate score. Given the terminal rewards,
+the signal errors are independent of $\Theta$ and of each other.
+The thresholds are
+\[
+ \tau_1=\frac{15}{19},\qquad
+ \tau_2(c)=\frac{132-420c}{50+35c},\qquad
+ \tau_3(c)=\frac{288-780c}{250-535c}.
+\]
+\end{example}
+
+\paragraph{A fixed-cost member.}
+At $c=1/5$, the thresholds in Example~\ref{ex:switching} reduce to
+$15/19$, $16/19$ and $12/13$. Terminal rewards are always collectable, and the
+optimal first advances are
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcccc}
+\toprule
+Prior $p$ & $(0,\frac{15}{19})$ & $(\frac{15}{19},\frac{16}{19})$
+ & $(\frac{16}{19},\frac{12}{13})$ & $(\frac{12}{13},1)$ \\
+\midrule
+$B$'s signal collectable & $A$ & $B$ & $A$ & $B$ \\
+$B$'s signal not collectable & $A$ & $A$ & $A$ & $A$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Either choice of $A$'s intermediate collection rights gives the same rows.
+
+We prove Proposition~\ref{prop:switching} for this family. Write $h=(h_A,h_B)$ for the observed history (each arm has an empty prefix, two
+signal prefixes and four completed prefixes, so there are $49$ joint histories
+$h$). Let $L_\theta(h)$ be the probability of $h$ given $\Theta=\theta$; every
+one of the $16$ joint paths has positive probability in both latent states, so
+no history reveals $\Theta$. For a fixed deterministic contingent policy, its
+unnormalized payoff from $h$,
+\[
+ W^\pi_h(p,c)=\sum_\theta \Prob(\Theta=\theta)L_\theta(h)\,
+ \E_\theta\Bigl[q(S_\tau)-\textstyle\sum_{t<\tau}c(S_t,i_t)\Bigm| h\Bigr],
+\]
+is affine in $p$ and affine in $c$, because the incumbent does not depend on
+$c$ and each terminal stage contributes $-c$ times a path probability. The
+unnormalized optimal value $W_h=\max_\pi W^\pi_h$ is therefore, for fixed $c$,
+continuous and piecewise affine in $p$, and satisfies
+\[
+ W_h=\max\Bigl\{q(h)M_h,\;
+ \max_{i}\Bigl[-c_i(h)M_h+\textstyle\sum_{y}W_{(h,i,y)}\Bigr]\Bigr\},
+ \qquad M_h=(1-p)L_0(h)+pL_1(h),
+\]
+with $c_i(h)\in\{1/100,c\}$. Normalizing by $M_h>0$ gives the Bellman equation
+for the posterior value, so the optimal first actions at the root are the
+maximizers of the bracketed terms at $h=\varnothing$.
+
+\emph{1. Certify all priors at a fixed cost.}
+For rational $c$, compute the piecewise-affine Bellman recursion in rational
+arithmetic. Partition $[0,1]$ at the union of breakpoints of each state's value,
+action values and child values. On each interval, every expression is affine
+in $p$: domination of all actions at both endpoints, with one action attaining
+the value at both, proves the Bellman identity throughout. Backward induction
+therefore certifies the optimum for every prior, rather than only sampled priors.
+For example, with both intermediate readings collectable and $c=1/5$, the root
+advance values with optimal continuation satisfy
+\[
+ Q_A(p)-Q_B(p)=\frac{15-19p}{2000},
+ \qquad p\in[9/13,63/76].
+\]
+Their equality gives $\tau_1=15/19$ and the first change from $A$ to $B$;
+the certificate also checks the winning advance against stopping.
+
+\emph{2. Certify open intervals of costs.}
+Run the same recursion and Bellman certificate over $\mathbb Q(c)$.
+Every sort, breakpoint test and certificate comparison depends on the sign of
+a rational-function difference $d$. Identically zero differences are exact
+identities; for each nonzero $d$, record its sign at a generic rational sample
+cost. If none has a zero or pole on an open interval $I$, every comparison
+keeps its outcome there and evaluation commutes with the arithmetic.
+Thus every $c\in I$ follows the same computational branch and inherits the
+all-prior Bellman certificate. Exact Sturm counts on numerators and
+denominators establish this sign invariance.
+
+\emph{3. Cover exceptional costs and boundaries.}
+On $(19/100,1/5)$, the only interior failure of sign invariance has numerator
+proportional to $21000c^2-12035c+1536$, whose root is
+$c^\ast=(2407-\sqrt{632689})/8400\approx0.19186$.
+Here two partition points used by the computation coincide. This changes the
+computation's partition, while the symbolic value and action functions it returns
+are identical on the two sides. On $(19/100,c^\ast)$ and $(c^\ast,1/5)$,
+all recorded nonzero differences keep their signs and the output gives the
+thresholds in Example~\ref{ex:switching}. Fixed-cost certificates cover
+$c=19/100$, $c=1/5$ in rational arithmetic and $c=c^\ast$ in
+$\mathbb Q(\sqrt{632689})$.
+With only $B$'s intermediate reading collectable, the same split and endpoint
+checks give the same regions. With terminal-only collection or only $A$'s
+intermediate reading collectable, no split is needed: $A$ is uniquely optimal
+throughout $(0,1)$ for every cost in the closed interval.
+
+Exact root counts also establish positive threshold denominators and
+$0<\tau_1<\tau_2(c)<\tau_3(c)<1$ throughout the cost interval.
+For uniqueness, within each open first-action region the winning advance strictly
+exceeds stopping and the other advance at every contained breakpoint and midpoint;
+nonnegative endpoint differences and positive midpoint differences of affine
+functions give strict inequalities in the open piece. The advances tie at
+$p=\tau_k(c)$. The verification script and output are included with the code.
+
+\subsection{Signed correction and robustness proof}
+\label{app:sharing-robustness}
+
+Throughout this subsection impose the coherent-law and arm-local-cost restriction
+of Proposition~\ref{prop:sharing-robustness}. Let
+$\mathsf Q_S=\bigotimes_j \mathsf P_{j,S}$ and define
+\[
+ \mathcal V_\otimes(S)=\E_{\mathsf Q_S}\max\{q(S),Z_1^S,\ldots,Z_N^S\}.
+\]
+This lies in $[y_{\min},y_{\max}]$ and is the independent-surrogate optimum,
+rather than the true shared optimum. Use the continuation utility
+$U_\pi=V_\pi+K$ defined in Section~\ref{sec:setting}.
+
+After forcing arm $i$ and seeing $Y=y$, write $S'=F(S,i,y)$. Define
+$\mathcal V_i^{\rm fr}(S,y)$ using the new incumbent and the advanced arm's
+conditional remaining law, but retain $\mathsf P_{j,S}$ for $j\ne i$. Coherence ensures
+the advanced law equals its actual marginal at $S'$; only untouched laws differ.
+Put
+\begin{align}
+ d_0(S)&=\mathcal V_\otimes(S)-q(S),\nonumber\\
+ d_i(S)&=\mathcal V_\otimes(S)+c(S,i)-\E[\mathcal V_i^{\rm fr}(S,Y)\mid S,i],\nonumber\\
+ \Gamma_i(S)&=\E[\mathcal V_\otimes(S')-\mathcal V_i^{\rm fr}(S,Y)\mid S,i].
+ \label{eq:sharing-gamma}
+\end{align}
+Here $d_0$ is the independent surrogate's stop loss, $d_i$ its loss from
+advancing $i$ under the frozen update, and $\Gamma_i$ the signed change in
+the surrogate potential from updating untouched arms. Both signs of $\Gamma_i$
+are possible; the proof controls its magnitude.
+The losses $d_0,d_i$ are nonnegative by Theorem~\ref{thm:loss} applied to
+$\mathsf Q_S$. In particular, with
+$O_i=\max\{q,\max_{j\ne i}Z_j^S\}$ independent of arm $i$ under $\mathsf Q_S$,
+\[
+ d_i=c(S,i)-\E_{\mathsf Q_S}[(W_i^S-\max\{O_i,G_i(S)\})^+].
+\]
+For finite $G_i$ this is the capped-overshoot expression of Theorem~\ref{thm:loss};
+for $G_i=-\infty$ it equals $c(S,i)$.
+
+\begin{proof}[Proof of Proposition~\ref{prop:sharing-robustness}]
+The true one-step residual is the signed update correction less the
+nonnegative surrogate action loss:
+\begin{equation}
+ -c(S,i)+\E_{\mathsf P}[\mathcal V_\otimes(S')\mid S,i]-\mathcal V_\otimes(S)
+       =\Gamma_i(S)-d_i(S).
+ \label{eq:sharing-residual}
+\end{equation}
+Summing conditional expectations with indicators before the stopping time over
+the deterministic range $0,\ldots,H-1$ gives, for every policy,
+\begin{equation}
+ U_\pi(S_0)=\mathcal V_\otimes(S_0)
+ +\E_\pi\sum_{b<\tau_\pi}(\Gamma_{i_b}-d_{i_b})(S_b)
+ -\E_\pi d_0(S_{\tau_\pi}).
+ \label{eq:sharing-identity}
+\end{equation}
+All sums are finite and bounded. At each chosen index advance the surrogate
+gap $d_i$ is zero; at its stop $d_0=0$. Consequently
+\begin{equation}
+ U_{\pi_{\rm IX}}(S_0)=\mathcal V_\otimes(S_0)
+       +\E_{\pi_{\rm IX}}\sum_{b<\tau_{\rm IX}}\Gamma_{i_b}(S_b).
+ \label{eq:sharing-index-identity}
+\end{equation}
+Subtracting from~\eqref{eq:sharing-identity} for a true optimal policy
+$\pi^\star$, dropping its nonnegative stop gap, and taking positive parts yields
+\begin{equation}
+ U^\star-U_{\pi_{\rm IX}}
+ \le\E_{\pi^\star}\sum_{b<\tau_\star}(\Gamma_{i_b}-d_{i_b})^+(S_b)
+   +\E_{\pi_{\rm IX}}\sum_{b<\tau_{\rm IX}}\Gamma_{i_b}^-(S_b),
+ \label{eq:sharing-refined}
+\end{equation}
+where $x^-=(-x)^+$. The first sum allows positive corrections along the true
+optimal trajectory; the second allows negative corrections along the index
+trajectory. This is why both trajectories enter the comparison.
+
+Fix $S,i,y$. Replace the frozen untouched-arm capped distributions by their
+updated distributions one arm at a time. For each replacement, condition on
+all other independent capped variables. Their maximum with the new incumbent
+is an outside option in $[q(S'),y_{\max}]$, so the absolute value change is at
+most the corresponding supremum defining $\varepsilon_i(S)$. The advanced
+arm's law is common to both products. Triangle inequality and expectation give
+$|\Gamma_i(S)|\le\varepsilon_i(S)$. Each summand
+in~\eqref{eq:sharing-refined} is at most $\bar\varepsilon$ and each trajectory
+has at most $H$ advances. The two contributions are therefore at most
+$H\bar\varepsilon$ each, giving $2H\bar\varepsilon$; removing the same sunk
+cost from both values does not change regret.
+\end{proof}
+
+This is the finite-horizon approximate-planning argument. In the formulation of
+\citet[Theorem~9 and Remark~11]{subramanian2022ais}, use the current marginal
+laws and own histories as the abstract state, frozen updates as the approximate
+transition, and incremental reward $q(S')-q(S)-c(S,i)$. The approximate value
+is $\mathcal V_\otimes-q$ and its expected next-value discrepancy is exactly
+$\Gamma_i$. The envelope above specializes that discrepancy using local
+stop-loss values. The local values are $1$-Lipschitz in the outside option,
+so their supremum is measurable by using a countable dense set and the
+endpoints. Replacing $Z_j$ by $\max\{y_{\min},Z_j\}$ handles exhausted arms
+without infinite arithmetic.
+
+\paragraph{A path-total-variation envelope.}
+Let $D=y_{\max}-y_{\min}$ and put $B_j(S)=D+\nu_j(S)c_{\max}$ if a
+collectable stage remains, and zero otherwise. With
+$\operatorname{TV}(\mu,\nu)=\sup_A|\mu(A)-\nu(A)|$,
+\begin{equation}
+ \varepsilon_i(S)\le\varepsilon_i^{\rm TV}(S)
+ =\E\!\left[\sum_{j\ne i} B_j(S)
+   \operatorname{TV}(\mathsf P_{j,S'},\mathsf P_{j,S})\,\middle|\,S,i\right].
+ \label{eq:sharing-tv}
+\end{equation}
+With densities, our TV is half the $L^1$ distance; the convention in
+\citet[Section~3.1]{subramanian2022ais} is the full $L^1$ distance.
+The constants here use our stated convention throughout.
+Indeed, each fixed local stopping rule, including immediate stopping, has path
+payoff $\max\{r,M_\sigma\}-\kappa_\sigma$ in
+$[y_{\min}-\nu_jc_{\max},y_{\max}]$. The same rule class is feasible under
+both marginal path laws because costs are arm-local. TV bounds each expectation
+difference by its payoff oscillation times TV, and taking the supremum over
+rules preserves the bound. Without a collectable stage, immediate stopping is
+optimal under both laws. This proves~\eqref{eq:sharing-tv}.
+
+\begin{proof}[Proof of Corollary~\ref{cor:component}]
+Conditional independence given $\Theta$ makes arm $j$'s remaining-path law at
+$S$ the mixture $\int\mathsf P_j^\vartheta(\cdot\mid s_j)\,\mu_S(d\vartheta)$; a reading on
+arm $i$ changes the mixing measure to $\mu_{S'}$ and leaves the components
+unchanged. Write $\mu_{S'}-\mu_S=\xi^+-\xi^-$ by the Jordan decomposition, with
+common mass $t=\operatorname{TV}(\mu_{S'},\mu_S)$. If $t=0$ the untouched
+marginal laws agree; otherwise
+$\mathsf P_{j,S'}-\mathsf P_{j,S}=t\bigl(\int\mathsf P_j^\vartheta\,d\xi^+/t-\int\mathsf P_j^\vartheta\,d\xi^-/t\bigr)$,
+and the total variation between two mixtures of the components is at most the
+largest total variation between components, so
+$\operatorname{TV}(\mathsf P_{j,S'},\mathsf P_{j,S})\le\Lambda_j(S)\,t$.
+Next, let $J$ be the joint law of $(\Theta,Y)$ given $S,i$, let $\beta$ be
+its $Y$ marginal, and put $M=\mu_S\otimes\beta$. The finite measure $J+M$
+dominates both $J$ and $M$. Integrating the absolute difference of their
+densities with respect to $J+M$, first conditional on $Y$ and then conditional
+on $\Theta$, gives the total-variation disintegration identity
+\[
+ \E_Y\operatorname{TV}(\mu_S(\cdot\mid Y),\mu_S)
+ =\operatorname{TV}(J,M)
+ =\E_{\vartheta\sim\mu_S}
+   \operatorname{TV}(\mathsf P_i^\vartheta(Y\in\cdot\mid s_i),\beta)
+ =\eta_i(S).
+\]
+Regular conditional laws exist on the stated standard Borel spaces.
+This argument applies also to singular joint laws, without assuming $J\ll M$.
+Substituting into~\eqref{eq:sharing-tv} gives the envelope, and
+Proposition~\ref{prop:sharing-robustness} the regret bound. The two-draw bound
+is the convexity inequality
+$\operatorname{TV}(\mathsf P^\vartheta,\int\mathsf P^{\vartheta'}\mu(d\vartheta'))\le\int\operatorname{TV}(\mathsf P^\vartheta,\mathsf P^{\vartheta'})\mu(d\vartheta')$.
+The binary formulas are the case of two components, computed next, in which $\varepsilon_i^{\rm TV}$ equals the displayed product.
+\end{proof}
+
+If arm paths are independent conditional on binary $\Theta$, let
+$p=\mathsf P(\Theta=1\mid S)$, and let $D_i^{\rm next}$ and $D_j^{\rm path}$ be the
+TV separations of the next-reading and remaining-path laws, respectively,
+between the two latent components. Then, for $0<p<1$,
+\begin{equation}
+ \varepsilon_i^{\rm TV}(S)
+ =2p(1-p)D_i^{\rm next}(S)\sum_{j\ne i} B_j(S)D_j^{\rm path}(S).
+ \label{eq:sharing-binary}
+\end{equation}
+Here $\Theta$ is an uncertain latent state under the fixed planning law,
+distinct from its fixed surrogate parameters $\theta$.
+To see this, set $p_y=\mathsf P(\Theta=1\mid S,Y_i=y)$. An untouched arm's component
+laws are unchanged, so its mixture-TV shift is
+$|p_y-p|D_j^{\rm path}$. Bayes' rule gives
+$\E|p_Y-p|=2p(1-p)D_i^{\rm next}$ by taking absolute variation of
+$(p_y-p)\mu(dy)=p(1-p)(\mu_1-\mu_0)(dy)$ for
+$\mu=(1-p)\mu_0+p\mu_1$. At $p\in\{0,1\}$ the envelope is zero, without
+defining null-component conditionals.
+
+\paragraph{Concentration and predictive dispersion.}
+Weak posterior concentration alone does not force $\eta_i$ to vanish.
+For example, consider beliefs $\mu_n=\operatorname{Uniform}[0,1/n]$ on a common
+component $\Theta$, with every arm's next reading equal to $\Theta$.
+These degenerate paths are conditionally independent given $\Theta$ and have
+bounded readings. Although $\mu_n$ converges weakly to a point mass at zero,
+$\operatorname{TV}(\delta_\vartheta,\mu_n)=1$ for every $\vartheta$, so
+$\eta_i=1$ for every $n$. Predictive total-variation regularity is needed to
+deduce local dispersion decay from concentration in a continuous component
+space. To deduce a vanishing regret bound, the envelope must additionally
+vanish uniformly over feasible future states, as required in
+Corollary~\ref{cor:component}.
+
+\paragraph{Why future-state control is required.}
+Let $(U,A,B)$ be uniform over $000,011,101,110$. Each pair is independent.
+Inspecting noncollectable $U$ costs $1/100$; inspecting collectable $A$ or $B$
+costs $3/5$ each, with $q_0=0$. Every root envelope is zero because one root
+observation leaves each other marginal unchanged, and the index stops.
+After $U=1$, $A$ and $B$ are opposite: inspect $A$, then $B$ only if $A=0$,
+for value $1/10$. After $U=0$, stopping is optimal. Buying $U$ therefore has
+value $1/25$, whereas starting $A$ or $B$ has value $-1/200$. Later states have
+nonzero envelopes. Thus even pairwise independence of whole arm paths at the
+root cannot replace the all-history condition.

@@ -1,0 +1,109 @@
+\section{Proofs for Section~\ref{sec:comparative}}
+\label{app:comparative}
+
+\begin{proof}[Proof of Proposition~\ref{prop:fewer-rights}]
+The upper bound holds because $\pi_{\cK}$ is admissible in $\mathcal P'$. For
+the lower bound, induct on $L(S)$ over corresponding states, which share
+the own states and sunk cost $K$ and have $q\le q'$. If $\pi_{\cK}$ stops at $\bar S$ then $\max_iG_i(s_i)\le q'$, and since $Z_i\le G_i$ pathwise,
+Theorem~\ref{thm:index} gives
+$V^\star(S)+K=\E[\max\{q,\max_iZ_i\}]\le\max\{q,\max_iG_i\}\le q'$, so
+$V^\star(S)\le q'-K=V_{\pi_{\cK}}(\bar S)$. Otherwise $\pi_{\cK}$ advances an arm
+$i$ with $G_i(s_i)=\max_jG_j(s_j)>q'\ge q$, which is an optimal action in
+$\mathcal P$ at $S$ by Theorem~\ref{thm:index}. Both problems pay $c(s_i)$ and
+reveal the same reading $Y$; the successors correspond, with incumbents
+$\max\{q,\Yc\}\le\max\{q',\Yc'\}$ since $\Yc\le\Yc'$. Hence
+$V^\star(S)=\E[V^\star(S_1)]\le\E[V_{\pi_{\cK}}(\bar S_1)]
+=V_{\pi_{\cK}}(\bar S)$ by the induction hypothesis applied under the integral.
+The successor values already include the advance cost through
+$K(S_1)=K(\bar S_1)=K+c(s_i)$.
+Appendix~\ref{app:comparative-results} exhibits cells attaining each bound.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:resumption}]
+(i) The index policy is no-return whenever it never resumes, which gives the
+equality case. Let $\pi$ be any no-return policy; conditional on its auxiliary randomness it is a deterministic no-return policy, so we may take it deterministic. Let $\sigma$ be the first
+step at which $\pi$'s action differs from $\pi_{\rm IX}$'s at the state
+reached, with $\sigma=\infty$ if they never differ. Up to $\sigma$ both
+policies take the same actions and observe the same readings, so the law of
+$(\widehat S_0,\ldots,\widehat S_\sigma)$ under $\pi$ is the law of the same stopped segment of
+the $\pi_{\rm IX}$ trajectory, including the last-arm and left-arm bookkeeping
+from the fixed root $S_0$. Since $\pi$ cannot resume, $\sigma$ is at most
+the first time $\pi_{\rm IX}$ resumes. Theorem~\ref{thm:loss} writes
+$V^\star(S_0)-V_\pi(S_0)$ as the expected sum of nonnegative losses along $\pi$,
+one of which, on $\{\sigma<\infty\}$, is the loss of $\pi$'s action at
+$S_\sigma$; that action differs from $\pi_{\rm IX}(S_\sigma)$, so its loss is at
+least $\delta(S_\sigma)$. Hence
+$V^\star(S_0)-V_\pi(S_0)\ge\E_{\pi_{\rm IX}}[\delta(S_\sigma)\mathbf 1\{\sigma<\infty\}]$.
+The right side is the cost of a stopping time on the $\pi_{\rm IX}$ trajectory
+that must stop no later than the first resumption and may run forever only on
+branches without resumption. The infimum of this cost over such stopping times
+satisfies the finite-horizon recursion defining $\widehat\rho$: it is zero where no
+resumption can occur, equals $\delta$ at a resumption state, and otherwise is
+the smaller of stopping now and continuing. Thus
+$V^\star(S_0)-V_\pi(S_0)\ge\widehat\rho(S_0,0,\varnothing)=\rho(S_0)$
+for every no-return $\pi$.
+
+(ii) At a state $S$ where the index-maximal arm $i^\star$ is unique with
+$G_{i^\star}>q$, every other action has positive loss. By
+Lemma~\ref{lem:nested}, $\E[(W_{i^\star}-G_{i^\star})^+]=c(s_{i^\star})>0$,
+so $W_{i^\star}>G_{i^\star}$ and hence $Z_{i^\star}=G_{i^\star}$ with positive
+probability. Then $\Delta_{\rm stop}(S)=\E[(\max_jZ_j-q)^+]>0$. For an arm
+$j\ne i^\star$ with finite index, $O_j\ge Z_{i^\star}=G_{i^\star}>G_j$ with
+positive probability, so $\Prob(O_j>G_j)>0$ and
+$\Delta_j(S)>0$ by the paragraph following Theorem~\ref{thm:loss}; if $G_j=-\infty$
+then $\Delta_j(S)=c(s_j)>0$. Hence $\delta(S)>0$ at every state in the
+hypothesis. The augmented recursion then gives $\widehat\rho(\widehat S)>0$
+if and only if resumption from that augmented history has positive probability:
+at a resumption state $\widehat\rho=\delta>0$, on branches without resumption
+$\widehat\rho=0$, and elsewhere
+$\widehat\rho=\min\{\delta,\E[\widehat\rho(\widehat S_1)]\}$ is positive exactly when
+$\E[\widehat\rho(\widehat S_1)]>0$. Finite ladders make the induction terminate;
+evaluating at $(S_0,0,\varnothing)$ proves the assertion for $\rho(S_0)$.
+
+(iii) Let every reading be a deterministic function of the own state. Then
+$W(s)$ is a number, the reservation equation $(W(s)-g)^+=c(s)$ has the unique
+solution $G(s)=W(s)-c(s)$ when a collectable stage remains, $Z(s)=G(s)$, and
+$W(s)=\max\{\Yc(s),G(s')\}$ with $s'$ the successor. Consequently an advance
+from $s$ to $s'$ either has $\Yc(s)\ge G(s')$, in which case the new incumbent
+is at least $\Yc(s)=G(s)+c(s)>G(s)$, or has $\Yc(s)<G(s')$, in which case
+$G(s')=G(s)+c(s)>G(s)$; the first case is forced when $s'$ is exhausted.
+Suppose $\pi_{\rm IX}$ advances an arm $i\ne j$ at a state where arm $j$, which it has advanced from $S_0$, is not exhausted; then $G_i(s_i)\ge G_j(s_j)$ and $G_i(s_i)>q$.
+We claim that at every later state either $q>G_j(s_j)$ or some unexhausted
+arm $k$ has $G_k(s_k)>G_j(s_j)$. After the advance of $i$, the first case
+above gives $q>G_i(s_i)\ge G_j(s_j)$ and the second gives
+$G_i(s_i')>G_i(s_i)\ge G_j(s_j)$. If the claim holds with $q>G_j(s_j)$ it holds
+forever, as the incumbent never decreases and $s_j$ does not change while $j$
+is paused. If it holds through an arm $k$, the next advance, if any, is of an
+arm $m$ with $G_m(s_m)\ge G_k(s_k)>G_j(s_j)$, so $m\ne j$, and the two cases
+above restore the claim with $q>G_m(s_m)>G_j(s_j)$ or with $k=m$. In neither
+case is $j$ ever index-maximal with index above the incumbent, so it is never
+resumed, whatever the tie order.
+\end{proof}
+
+\begin{example}[Resumption without learning future rewards]\label{ex:resumption-reward}
+Let $q_0=0$, make every stage collectable, and charge $1/10$ per advance.
+Arm $A$ first pays zero or one with equal probability, then pays $2/5$
+deterministically; independent arm $B$ pays zero or $3/5$ with equal probability
+in one stage. The indices are $G_{A,1}=4/5$, $G_B=2/5$, and $G_{A,2}=3/10$.
+The index policy starts $A$, switches to $B$ after a zero, and resumes $A$ after
+a second zero. Its value is $23/40$, whereas the no-return optimum is $11/20$,
+so resumption is worth $1/40$. No reading changes any remaining reward law:
+$A$'s index drops at its known stage transition, while the realized collectable
+reward determines whether to continue. The calculation below verifies both values.
+\end{example}
+
+\paragraph{Value calculations.}
+The index policy stops after a first reward of one; after a zero from $A$ it
+tries $B$ and completes $A$ only if $B$ also returns zero. Its net utility is
+\[
+ \tfrac12(1-\tfrac1{10})
+ +\tfrac14(\tfrac35-\tfrac2{10})
+ +\tfrac14(\tfrac25-\tfrac3{10})=\tfrac{23}{40}.
+\]
+For a no-return policy starting $A$, a zero leaves the choice between completing
+$A$ for additional value $3/10$ and abandoning it for $B$, whose value is $1/5$.
+Completing $A$ raises the incumbent to $2/5$, at which inspecting $B$ ties stopping.
+Thus starting $A$ has no-return value
+$-1/10+(1/2)\cdot1+(1/2)\cdot(3/10)=11/20$.
+Starting $B$ and then acting optimally on $A$ gives $21/40$, and stopping gives zero;
+these exhaust the first actions and prove the no-return optimum.

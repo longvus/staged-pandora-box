@@ -1,0 +1,48 @@
+\subsection{Exact losses of arbitrary policies}
+\label{sec:loss}
+The covered call values do more than identify the optimal action: they price every suboptimal one
+exactly, so the loss of any policy against the optimum can be located, not only bounded.
+
+\begin{theorem}[Loss decomposition]\label{thm:loss}
+Under the hypotheses of Theorem~\ref{thm:index}, at a state $S$ with incumbent $q$ let
+\[
+\Delta_{\rm stop}(S)=\E\bigl[(\max_jZ_j(s_j)-q)^+\bigr],
+\]
+and, for $i\in\cI(S)$ with $O_i=\max\{q,\max_{j\ne i}Z_j(s_j)\}$, which is independent of arm
+$i$'s readings,
+\[
+\Delta_i(S)=c(s_i)-\E\bigl[(W_i(s_i)-\max\{O_i,G_i(s_i)\})^+\bigr],
+\]
+which equals $\E[\min\{(W_i-G_i)^+,(O_i-G_i)^+\}]$ when $G_i(s_i)>-\infty$. Then
+$V^\star(S)-h(S)=\Delta_{\rm stop}(S)$, $V^\star(S)-Q^\star(S,i)=\Delta_i(S)\ge0$, and every
+policy $\pi$, advancing arm $i_b$ at its $b$-th step, has
+\[
+V^\star(S)-V_\pi(S)=\E_{\theta,\pi}\Bigl[\sum_{b<\tau_\pi}\Delta_{i_b}(S_b)+\Delta_{\rm stop}(S_{\tau_\pi})\Bigm|S\Bigr].
+\]
+\end{theorem}
+When $G_i=-\infty$, $W_i=-\infty$ and the first formula gives $\Delta_i=c(s_i)$, since
+$O_i\ge q$ is finite. The expression involving $W_i-G_i$ is used only for finite indices.
+\begin{proof}
+With $\mathcal V$ as in the proof of Theorem~\ref{thm:index}, $V^\star+K=\mathcal V$ and $h=q-K$, so
+$V^\star(S)-h(S)=\E[\max\{q,\max_jZ_j\}]-q=\Delta_{\rm stop}(S)$.
+Condition on the next actual reading of $i$ and apply the tower property as in
+Theorem~\ref{thm:index}; the added cost is $c(s_i)$. This gives
+$Q^\star(S,i)+K+c(s_i)=\E[\max\{O_i,W_i\}]$ while
+$V^\star(S)+K=\E[\max\{O_i,\min\{G_i,W_i\}\}]$, and
+$\max\{O,W\}-\max\{O,\min\{G,W\}\}=(W-\max\{O,G\})^+$ gives $V^\star(S)-Q^\star(S,i)=\Delta_i(S)$,
+nonnegative by the Bellman equation. The advance reveals only the next reading,
+not the full-path variable $W_i$. When $G_i$ is finite, $c(s_i)=\E[(W_i-G_i)^+]$ by
+Lemma~\ref{lem:nested}, and $(W-G)^+-(W-\max\{O,G\})^+=\min\{(W-G)^+,(O-G)^+\}$ pointwise.
+The policy identity is the performance-difference telescoping of these one-step losses along
+$\pi$, given in Appendix~\ref{app:loss-proof}.
+\end{proof}
+
+The theorem is the performance-difference identity of dynamic programming with both of its terms
+exact. For finite $G_i$, $\Delta_i=0$ exactly when $O_i\le G_i$ almost surely:
+the reservation equation and positive cost give $\Prob(W_i>G_i)>0$, and $W_i$ is
+independent of $O_i$. Thus an advance costs nothing against the optimum exactly
+when the rest of the pool, incumbent included, almost surely cannot overtake its
+index; otherwise it costs the expected
+overshoot of the arm's nested value above its index, capped by how far the rest of the pool can
+exceed that index. A stop costs the value of the covered call values above the incumbent. Every term is a functional of the arms' covered call distributions. The identity applies to any policy, including one that advances through states at which the index policy would stop or switch. Evaluating the distributions makes each such departure measurable against the same optimum.
+

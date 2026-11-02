@@ -1,0 +1,29 @@
+\section{Numerical Verification}
+\label{sec:validation}
+
+Exact finite-law checks compare the representation and losses with direct joint
+Bellman optimization, using rational arithmetic throughout
+(Table~\ref{tab:verification-summary}). On independent binary-tree instances,
+the optimal value, maximal-index actions and every stop/advance loss agree.
+On the staging grid, each diagnostic policy's utility loss equals its accumulated
+action losses. Across dominated problem pairs, value differences equal the
+covered-call overshoot; both ends of the smaller-collectable-set bound are
+attained. A separate no-return recursion confirms that $\rho$ never exceeds the
+resumption gap, including cases of equality (Table~\ref{tab:comparative}).
+
+Under shared laws, the signed residual, policy telescoping and envelope bounds
+hold at every feasible prefix, including histories the index never visits.
+A constructed example has positive index regret, while a shared nuisance has
+zero local-value envelope despite nonzero path-TV shifts
+(Table~\ref{tab:robustness-bounds}). Across the tested priors in a binary-component
+sweep, the largest uniform call and path-TV bounds decrease as the prior moves
+toward zero, and regret is zero at the four tested priors below $1/2$
+(Table~\ref{tab:concentration}). This illustrates the uniform-envelope condition
+in Corollary~\ref{cor:component} for these fixed finite models. These checks
+directly support the sharing guarantee and its value-sensitive discrepancy.
+Appendix~\ref{app:experiments}
+places each study's law beside its checks and results;
+Algorithm~\ref{alg:staged-index} gives the policy and backward index computation;
+Appendix~\ref{app:computation} gives finite-tree implementation details and complexity.
+The checks supplement the proofs under known laws; they establish neither
+learned-surrogate accuracy nor practical optimization performance.

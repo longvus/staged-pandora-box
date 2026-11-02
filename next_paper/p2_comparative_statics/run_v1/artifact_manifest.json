@@ -1,0 +1,9 @@
+{
+  "design_freeze.json": "ecc96aa6ac44b478c91dd71dce7a873677c72a8119e89c7318198e76321b128f",
+  "random_tree_check.json": "3df497a2c156b213b69cf3e4f12c52516d38b6ab2ee35dd1f1a2f08fada64c76",
+  "records.jsonl": "66e6f420a0c7e825705ba810fe2420c29a60e8a3fdde5f76b78958db702b7008",
+  "source_snapshot/p2_comparative_statics_study.py": "49593591e0eae4d57dc44058da0c92dd7be7eaa79952e5abd52af0badac44238",
+  "source_snapshot/p2_staging_study.py": "aa1403902ff254d1e227537b5c231899438e4b1493efa0c533461ade8aba920e",
+  "source_snapshot/staged_pandora_exact.py": "1682800b340ef37ece19fc44f149ca1fbd60847d7c1982e5c6ce75a4e1ac1386",
+  "summary.json": "d9056ebfe0cc2047933ce2d9c53f47070db016d69dc6591004eeae32da51bbef"
+}

@@ -1,0 +1,101 @@
+\begin{abstract}
+A staged search must decide which candidate to advance next and when to stop. Some observations
+only inform later decisions; others can be kept as results. We formulate these choices as a
+staged Pandora's box with a designated set of collectable stages. For independent finite-stage
+candidates with bounded readings and positive bounded own-history costs, an exact covered-call recursion gives the
+reservation index, the optimal value and the loss of every advance or stop; advancing an
+index-maximal candidate while its index exceeds the incumbent is optimal. The representation
+recovers classical single-stage search, nested inspection and the all-collectable Markov setting,
+and prices changes in the problem: enlarging the collectable set or lowering costs raises the
+value by an explicit covered-call overshoot. Resumption can be valuable even when future
+reward laws do not change, but has no value for deterministic readings. With information
+sharing across candidates, no rule using only their
+separate remaining-reading laws is universally optimal, and making an intermediate reading
+collectable can change which candidate is inspected first. Under a coherent joint path law
+with own-history costs, an approximate-planning bound controls the recomputed index's regret
+by changes in untouched candidates' local values; a common-component
+specialization bounds those changes through predictive total-variation dispersion.
+Exact finite-law experiments check the representation, the loss
+accounting and the bounds.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Cost-aware search has two coupled decisions, in Weitzman's terms a \emph{selection rule},
+which candidate to inspect next, and a \emph{stopping rule}, whether to inspect at all
+\citep{weitzman1979}. For independent candidates inspected in one step, one reservation value
+answers both: open a box of largest reservation value while that value exceeds the best
+result already available. The Pandora's box Gittins index (PBGI) brings this principle to
+cost-aware Bayesian optimization \citep{xie2024pbgi,xie2025coststop}.
+
+An evaluation need not reveal its result at once. A training run may be paused at checkpoints
+and resumed later; a proxy evaluation may inform the decision to pay for a full one without
+being a deployable result; a learning curve may make every checkpoint a usable result. We
+represent these situations with a finite ladder per candidate and a \emph{collectable set}:
+only readings at designated stages enter the incumbent. The searcher may advance any available
+candidate by one stage, return to another, or stop and keep its best collectable reading less
+the costs incurred. Staging changes both rules: selection includes resuming a paused candidate,
+and what stopping keeps depends on the collectable set.
+
+In multi-fidelity Bayesian optimization, a candidate can be a fixed hyperparameter
+configuration and its ladder a prescribed sequence of fidelities or training checkpoints.
+Terminal-only collection models proxy evaluations whose outputs cannot be deployed;
+checkpoint collection models intermediate outputs that are themselves admissible results.
+We study the search structure on a finite candidate pool under bounded planning laws;
+the numerical studies verify this structure on known laws.
+
+We give an explicit covered-call representation of this problem. At a nonexhausted arm
+state $s$ with a collectable stage left, let $\Yc$ be the next stage's reading if it
+is collectable and $-\infty$ otherwise, and let $s'$ be the successor own state.
+The recursion
+\[
+W(s)=\max\{\Yc,Z(s')\},\qquad Z(s)=\min\{G(s),W(s)\},\qquad
+\E[(W(s)-G(s))^+]=c(s),
+\]
+represents each remaining arm by its next stage's collectable reading or future capped
+value, capped again at its current reservation value $G(s)$. A suffix without a collectable
+stage, including an exhausted arm, has $G=Z=-\infty$ and needs no reservation equation.
+Under independent arms the optimal value is the expectation of the largest
+covered call value and the incumbent (Theorem~\ref{thm:index}). The same representation gives
+the exact Bellman loss of every advance and stop, hence of any policy
+(Theorem~\ref{thm:loss}), and prices changes in the problem: enlarging the collectable set or
+lowering costs raises the value by an explicit overshoot, planning with a smaller collectable
+set loses at most that amount, and deterministic readings need no resumption.
+With stochastic collectable rewards, resumption can help without learning about
+unobserved rewards (Section~\ref{sec:comparative}).
+
+We do not claim a new index theorem: the policy is consistent with classical superprocess
+results \citep{whittle1980gittins,glazebrook1982whittle}, and the single-stage, terminal-only
+and all-collectable Markov cases have established solutions (Section~\ref{sec:related}). Our
+contribution is the explicit recursion, value representation and action losses for designated
+collection, together with the effects of collection rights on acquisition and the local-value
+discrepancy under sharing. The construction separates information from collectable reward
+while accommodating own-history states and costs, features already permitted in nested
+inspection models \citep[Section~4.1]{bowers2024nested}.
+
+Under a shared surrogate, one candidate's observation changes the law of the others, and
+separate arm problems omit the value of that change. Two instances with identical separate
+arm laws can have different uniquely optimal first actions (Proposition~\ref{prop:no-local}),
+and collection rights reshape acquisition under sharing: in a two-arm family with a common
+latent state, the optimal first advance alternates $A,B,A,B$ in the prior when the second
+arm's intermediate reading is collectable, and is always $A$ when it is not
+(Proposition~\ref{prop:switching}). For a coherent joint path law with arm-local costs, an
+approximate-planning bound controls the recomputed index's regret by how much untouched arms'
+local values change (Proposition~\ref{prop:sharing-robustness}); when sharing flows through a
+common component, a local envelope is the arms' sensitivity to the component times the
+predictive total-variation dispersion of one more reading (Corollary~\ref{cor:component}).
+A vanishing regret bound requires this envelope to vanish uniformly over feasible future
+histories; posterior concentration alone is insufficient. These conditions are not
+established for a general correlated Gaussian process.
+
+\subsection{Contributions}
+\label{sec:contributions}
+We provide (i) the staged model and a covered-call recursion giving the optimal value and
+index policy under independence; (ii) exact stop and advance losses with an arbitrary-policy
+decomposition, exact comparative statics for collection rights and costs, and a bound on the
+value of resumption; (iii) under information sharing, the limits of own-arm-law policies, a
+certified family in which collection rights split the optimal first-action region, and an
+approximate-planning bound expressed through local-value changes and a common-component
+dispersion envelope; and (iv) exact finite-state checks of the value and loss identities,
+comparative statics and sharing bounds against direct Bellman optimization.

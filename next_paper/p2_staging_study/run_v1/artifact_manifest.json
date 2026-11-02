@@ -1,0 +1,23 @@
+{
+  "FINDINGS.md": "3672c4b0eb2fe3401c2c1f9f5930bffd99dc42984d52b1395eb5617ce996be2e",
+  "action_loss_table.csv": "3388edd32089241445f81622c1e5a930708588f442d78421612b48059073286d",
+  "action_loss_table.tex": "8169cfe843bc153576a5797510de5ec621dcb4f947da49db7d5bdd18b758799d",
+  "analysis.json": "c3f6520d2a05485faf5610b80915a881ad2adbb465392523ea30250ef26a7705",
+  "audit.json": "336c11b46ecc29083f5661951d47fb68dad65f31d7a552e3f081eed3a1d93c85",
+  "design_freeze.json": "b70506bf01c7aafdb3293bc15b01ee39de12fe1926e9f171bc58f4bcf08fa434",
+  "records.jsonl": "8ade7fe834e99e8fba405159b02baaadd00323cd4c9ba7dcae6e67bbefbd6dd0",
+  "source_snapshot/P2_STAGING_STUDY_PROTOCOL.md": "990e27e376d83188f0145db5c64ac23e14fbce96939587a193dde64a3e3dfcbc",
+  "source_snapshot/p2_staging_study.py": "aa1403902ff254d1e227537b5c231899438e4b1493efa0c533461ade8aba920e",
+  "source_snapshot/report_p2_staging_study.py": "c3f9aacdb4e08178af3c24c6682016d8a079550f00b35e12b93786e488cb25fb",
+  "source_snapshot/staged_pandora_exact.py": "1682800b340ef37ece19fc44f149ca1fbd60847d7c1982e5c6ce75a4e1ac1386",
+  "source_snapshot/test_p2_staging_study.py": "dcb3832a4ccae71c5d9dbf171434cfac8b980865e7612a8179fc60da3b36ef8a",
+  "staging_cost_grid.pdf": "40099459e92e13599627b97ad43593a529eac319cf6911773d102996904040fc",
+  "staging_cost_grid.png": "445b6bfbb91a60e95a2614a44ae330b6301dffcb55b00fc94640ba3f6c037e8a",
+  "staging_deterministic_controls.pdf": "ff77531a134ae81e6c5d93b14e2783cf2e6140747d201e55f811951cbea84daf",
+  "staging_deterministic_controls.png": "ceacbed366ed0889643a9d7e93cc7d49c0c1c3abb0fe0a1c35e756e39b76fe60",
+  "staging_initial_indices.pdf": "cd675dbe19f7a9efc3f266c9ebec351f33f06e3cd3fcc47cd2ada724dc84c732",
+  "staging_initial_indices.png": "d1e552b53e45772cea5d0fbdd9c08968650e6728f269883e7561fb2ca2d6d297",
+  "staging_signal_utility.pdf": "c2d47a53b3f46119398617061a92e9ce96100149a241f282b96ee872eb223d89",
+  "staging_signal_utility.png": "904b79f05c190d25aebb837ba5c61312c24a7c9208b9599fbd7fa04a6b89ea8c",
+  "summary.json": "2d809f0a1600cf7f27b424d64d02e9cfba30ac17c3ec094e5067b8d282fb9629"
+}

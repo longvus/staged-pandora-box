@@ -1,0 +1,41 @@
+\paragraph{Single-arm stopping problems.}
+Fix a history state $S$, an available arm $i$, and a depth cap $k\ge1$. Advance only $i$,
+obtaining states $S^{(m)}$ by iterating the planning kernel and successor map. Let
+$\mathcal G_m$ be the filtration of those observations and $\nu_i=T_i-t_i$ the remaining
+stages. An admissible arm run is a stopping time $1\le\sigma\le\min\{k,\nu_i\}$ for this
+filtration; it pays every advance up to $\sigma$ and may abandon the arm after any reading.
+Write $\mathcal R_i^{(k)}(S)$ for these runs, $M_\sigma$ for the best newly obtained
+collectable reading ($-\infty$ if none), and $\kappa_\sigma$ for the run's total
+additional cost. Earlier collectable readings remain in the incumbent, rather
+than in $M_\sigma$. For an outside value $r$, define
+\[
+\Phi_i^{(k)}(S;r)=\sup_{\sigma\in\mathcal R_i^{(k)}(S)}
+\{\E[(M_\sigma-r)^+\mid S]-\E[\kappa_\sigma\mid S]\},\qquad
+G_i^{(k)}(S)=\sup\{r:\Phi_i^{(k)}(S;r)>0\}.
+\]
+The empty supremum for $G$ is $-\infty$. The run law is the original planning law from $S$;
+$r$ is a payoff comparison, not a modification of that law. The full index uses $k=\nu_i$;
+exhausted arms have index $-\infty$. If a collectable stage remains, let $\mu_i(S)$ be the
+number of advances to the next such stage. The first advance is forced in $\Phi$; the option
+of stopping immediately is represented by $\Phi^+=\max\{0,\Phi\}$. The auxiliary value $r$
+may lie outside the range of observed scores.
+
+\begin{proposition}[Reservation-value properties]\label{prop:index}
+Under Assumption~\ref{assm:standing}, $r\mapsto\Phi_i^{(k)}(S;r)$ is nonincreasing and
+$1$-Lipschitz. The index is finite exactly when a collectable stage lies within the cap, in
+which case
+\[
+y_{\min}-\mu_i(S)c_{\max}\le G_i^{(k)}(S)\le y_{\max}-c(S,i).
+\]
+In every case $\Phi_i^{(k)}(S;r)>0$ if and only if $r<G_i^{(k)}(S)$, and $G_i^{(k)}(S)$ is
+nondecreasing in $k$. When the index is finite, $\Phi_i^{(k)}(S;G_i^{(k)}(S))=0$.
+\end{proposition}
+Appendix~\ref{app:proof-details} gives the proof.
+
+The index is measurable: it is also the supremum of the rational $a$ for which
+$\Phi_i^{(k)}(S;a)>0$. Thus selecting a smallest-numbered index maximizer defines a measurable
+policy even for continuous or atomic reading laws.
+
+These definitions also apply under a shared planning law: the current history fixes the
+starting conditional law, and the hypothetical run observes only the chosen arm. The
+independent-arm theorem requires the additional autonomy assumption given above.

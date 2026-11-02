@@ -1,0 +1,46 @@
+Algorithm~\ref{alg:staged-index} combines the backward computation with the
+policy of Theorem~\ref{thm:index}. The function returns an index and a conditional
+covered-call law; its recursive calls integrate over hypothetical futures while
+other arms' observed histories remain fixed. Only the policy's advance observes
+a reading. Appendix~\ref{app:computation} gives finite-tree calculations,
+complexity and the qualification for continuous laws.
+
+\begin{algorithm}[htbp]
+\caption{Staged index computation and search}
+\label{alg:staged-index}
+\small
+\begin{algorithmic}[1]
+\Require Initial state $S_0$, fixed planning law, ladders, collectable sets and costs
+\Function{ArmCaps}{$i,T$}
+  \If{arm $i$ has no collectable stage left at $T$}
+    \State \Return $(-\infty,\delta_{-\infty})$ \Comment{point mass at $-\infty$}
+  \EndIf
+  \State For each possible next reading $y$, obtain
+  \Statex \hspace{\algorithmicindent} $(\cdot,\mu_y)\gets\Call{ArmCaps}{i,F(T,i,y)}$
+  \State Form the law of $W=\max\{\Yc(Y),Z_Y\}$ using
+  \Statex \hspace{\algorithmicindent} $Y\sim p_\theta(\cdot\mid T,i)$ and $Z_Y\mid Y=y\sim\mu_y$
+  \State Solve for the unique $g$ with $\E[(W-g)^+\mid T,i]=c(T,i)$
+  \State \Return $(g,\operatorname{Law}(\min\{g,W\}\mid T,i))$
+\EndFunction
+\Procedure{StagedIndex}{$S_0$}
+  \State $S\gets S_0$
+  \While{$\cI(S)\ne\varnothing$}
+    \ForAll{$i\in\cI(S)$}
+      \State $(G_i,\cdot)\gets\Call{ArmCaps}{i,S}$
+    \EndFor
+    \If{$\max_{i\in\cI(S)}G_i\le q(S)$}
+      \State \textbf{break}
+    \EndIf
+    \State $i\gets\min\argmax_{j\in\cI(S)}G_j$
+    \State Pay $c(S,i)$ and observe the next reading $Y$
+    \State $S\gets F(S,i,Y)$; update predictions using this observation
+  \EndWhile
+  \State \Return incumbent $q(S)$ and net utility $h(S)=q(S)-K(S)$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+The policy takes at most $L(S_0)$ advances. Under a coherent shared law, it
+recomputes indices from the updated posterior marginals after each observation;
+Proposition~\ref{prop:sharing-robustness} gives its guarantee under that
+proposition's conditions.

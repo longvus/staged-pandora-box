@@ -1,0 +1,172 @@
+\section{Main Results}
+\label{sec:main}
+
+\subsection{Covered-call recursion and optimal policy}
+\label{sec:nested}
+
+Throughout this section the planning law is per-arm and
+Assumption~\ref{assm:standing} holds. Fix a nonexhausted arm and write $s$ for its own state, $Y$ for its
+next reading, $\Yc$ for the collectable reading and $s'$ for its state after it. Write $\Phi(s;r)=\Phi_i^{(\nu_i)}(S;r)$ and $G(s)=G_i^{(\nu_i)}(S)$ for the single-arm quantities of Section~\ref{sec:setting}.
+All expectations in the local calculation are under $\mathsf P_i^s$; after observing $Y$,
+future expectations use the conditional continuation law from $s'$. The continuation
+improvement is zero at an exhausted arm; the outside option is retained.
+Lemma~\ref{lem:run-dp} justifies the following Bellman
+recursion and its attaining stopping rules for arbitrary within-arm kernels.
+After the forced first advance the run
+either stops or continues from $s'$ against the incumbent $\max\{r,\Yc\}$, and
+$(\max\{\Yc,M'\}-r)^+-(\Yc-r)^+=(M'-\max\{r,\Yc\})^+$ for the best later collectable reading
+$M'$, so
+\begin{equation}
+\Phi(s;r)=\E\bigl[(\Yc-r)^+-c(s)+\Phi(s';\max\{r,\Yc\})^+\bigr],
+\label{eq:phi-bellman}
+\end{equation}
+with $\Phi(s';\cdot)^+\equiv0$ if $\nu(s')=0$.
+
+\begin{definition}[Nested value and covered call value]\label{def:nested}
+For an arm state $s$ define, by backward recursion on $\nu(s)$, $Z(s)=-\infty$ if $\nu(s)=0$ and
+otherwise
+\[
+W(s)=\max\{\Yc,\,Z(s')\},\qquad Z(s)=\min\{G(s),\,W(s)\}.
+\]
+$W(s)$ is a function of the arm's readings from $s$ onward; $Z(s)$ is its \emph{covered call value}.
+These are random variables on the full remaining arm path, not readings disclosed by the
+first advance. The index $G(s)$ is a number determined by the current state.
+Finite backward recursion makes $W,Z$ jointly measurable in the starting state and continuation
+path, using measurability of $G$ from Section~\ref{sec:setting}.
+\end{definition}
+
+When collection remains, the backward computation is: obtain the child caps,
+form $W$, solve its reservation equation for $G$, and cap $W$ to obtain $Z$.
+The lemma below shows that this computed root equals the stopping threshold
+already defined in Section~\ref{sec:setting}, and that the cap accounts for
+the advance cost in the keep-or-run value.
+
+\begin{lemma}[Nested box]\label{lem:nested}
+For every arm state $s$ with $\nu(s)\ge1$ and every $r\in\mathbb R$,
+\[
+\Phi(s;r)=\E\bigl[(W(s)-r)^+\bigr]-c(s),\qquad
+\E\bigl[(W(s)-G(s))^+\bigr]=c(s)\ \text{ if }G(s)>-\infty,
+\]
+and $\E[\max\{r,Z(s)\}]=r+\Phi(s;r)^+$. If a collectable stage remains, the reservation
+equation has a unique finite solution, and $W(s),Z(s)$ are bounded real random variables.
+If none remains, $G(s)=W(s)=Z(s)=-\infty$ and $\Phi(s;r)=-c(s)$.
+The local value therefore has Weitzman's positive-part form, with $G(s)$ the reservation
+price and $Z(s)$ the covered call value \citep{kleinberg2016descending}.
+\end{lemma}
+\begin{proof}
+Induction on $\nu(s)$. If $\nu(s')=0$ then $W(s)=\Yc$ and \eqref{eq:phi-bellman} is the first
+claim. Otherwise the hypothesis at $s'$ gives $\Phi(s';r')^+=\E[\max\{r',Z(s')\}\mid Y]-r'$ with
+$r'=\max\{r,\Yc\}$, and \eqref{eq:phi-bellman} becomes
+\begin{align*}
+\Phi(s;r)&=\E\bigl[(\Yc-r)^+ + \max\{r,\Yc,Z(s')\}-\max\{r,\Yc\}\bigr]-c(s)\\
+&=\E\bigl[\max\{r,\Yc,Z(s')\}-r\bigr]-c(s)=\E\bigl[(W(s)-r)^+\bigr]-c(s),
+\end{align*}
+using $(\Yc-r)^+=\max\{r,\Yc\}-r$, which holds also for $\Yc=-\infty$.
+If no collectable stage remains, all continuation covered calls are $-\infty$ and stopping
+after the forced advance gives $\Phi=-c(s)$. Otherwise backward induction, together with
+Proposition~\ref{prop:index}, bounds the finite $W,Z$ between
+$y_{\min}-\nu(s)c_{\max}$ and $y_{\max}$. This makes their positive-part expectations finite.
+Continuity and Proposition~\ref{prop:index} give
+$\E[(W-G)^+]=c(s)$. The root is unique: for $a<b$ with $\E[(W-b)^+]>0$,
+\[
+\E[(W-a)^+]-\E[(W-b)^+]\ge(b-a)\Prob(W>b)>0.
+\]
+Two roots cannot therefore have the same strictly positive level $c(s)$; no density or
+absence-of-atoms assumption is needed. For the covered-call identity, if $r<G(s)$ then
+$(\min\{G,W\}-r)^+=(W-r)^+-(W-G)^+$, so $\E[\max\{r,Z\}]=r+\Phi(s;r)$ with $\Phi(s;r)>0$; if
+$r\ge G(s)$ then $Z\le G\le r$ gives $\E[\max\{r,Z\}]=r$ and $\Phi(s;r)\le0$.
+\end{proof}
+
+The representation holds for every outside option while preserving the staged observation protocol.
+In particular,
+$Y$ and $Z(s')$ may be dependent; the proof integrates their actual joint law. The role of
+collectable intermediate readings is exactly the maximum in $W$. No discretization is used
+in this lemma; Example~\ref{ex:continuous-collection} gives a continuous dependent instance
+with both stages collectable.
+
+\begin{theorem}[Index optimality under a per-arm planning law]\label{thm:index}
+Under Assumption~\ref{assm:standing} with a per-arm planning law, for every state $S$
+with incumbent $q$, cumulative cost $K$ and arm states $s_1,\ldots,s_N$,
+\[
+V^\star(S)+K=\E\Bigl[\max\bigl\{q,\ \max_i Z_i(s_i)\bigr\}\Bigr],
+\]
+the expectation being over the independent covered call values of the arms. Stopping is optimal if and
+only if $\max_i G_i(s_i)\le q$, and when $\max_i G_i(s_i)>q$ advancing any arm with the largest
+index is optimal. In particular the index policy $\pi_{\rm IX}$, which stops when
+$\max_i G_i(s_i)\le q$ and otherwise advances an index-maximal arm, has $V_{\pi_{\rm IX}}=V^\star$.
+\end{theorem}
+\begin{proof}
+All expectations below are under the product remaining-path law $\mathsf P_S$ from
+Section~\ref{sec:setting}. Let $\mathcal V(S)=\E[\max\{q,\max_i Z_i(s_i)\}]$.
+We verify this candidate by showing that every advance has nonpositive Bellman
+residual, with equality for a maximal-index advance above $q$; otherwise stopping
+attains the value. Finite-horizon induction then identifies $\mathcal V$ with $V^\star+K$.
+Then $\mathcal V\ge q$, with equality when $\max_iG_i(s_i)\le q$ because $Z_i\le G_i$.
+If an available arm has $G_i=-\infty$, it has no collectable stage left. Its advance changes
+neither the incumbent nor the other arms' states or laws, so its Bellman residual is
+$\E[\mathcal V(S')]-c(s_i)-\mathcal V(S)=-c(s_i)<0$.
+
+Now fix an available arm with finite index, abbreviate $W_i=W_i(s_i)$ and $G_i=G_i(s_i)$, and
+let $R=\max\{q,\max_{j\ne i}Z_j(s_j)\}$, the outside option supplied by the incumbent
+and the rest of the pool. It is random but independent of arm $i$'s entire remaining path.
+After its first reading $Y$, the conditional law of that arm is the law from
+$s_i'$, while every other path retains its law. Consequently, almost surely,
+\[
+\mathcal V(S')=\E\!\left[\max\{q,\Yc,Z_i(s_i'),\max_{j\ne i}Z_j(s_j)\}\mid Y\right].
+\]
+Taking the outer expectation gives $\E[\mathcal V(S')]=\E[\max\{R,W_i\}]$ by the tower
+property; it does not assume $W_i$ is observed. By definition,
+$\mathcal V(S)=\E[\max\{R,\min\{G_i,W_i\}\}]$. The pathwise identity
+\[
+\max\{R,W\}-\max\{R,\min\{G,W\}\}=(W-\max\{R,G\})^+
+\]
+therefore gives
+\begin{align*}
+\E[\mathcal V(S')]-c(s_i)-\mathcal V(S)
+&=\E\bigl[(W_i-\max\{R,G_i\})^+\bigr]-c(s_i)\\
+&\le\E\bigl[(W_i-G_i)^+\bigr]-c(s_i)=0
+\end{align*}
+by Lemma~\ref{lem:nested}. The inequality is an
+equality whenever $R\le G_i$ almost surely. If $G_i=\max_j G_j>q$ then $R\le G_i$, because
+$q<G_i$ and $Z_j\le G_j\le G_i$ for every $j$, so equality holds throughout for every
+index-maximal arm. Hence $\mathcal V(S)=\max\{q,\max_i(\E[\mathcal V(S')]-c(s_i))\}$ at every state, attained by
+stopping when $\max_i G_i\le q$ and by every index-maximal arm otherwise. In the second case
+stopping does not attain it: for an index-maximal arm, $\E[(W_i-G_i)^+]=c(s_i)>0$ gives
+$\Prob(W_i>G_i)>0$, and on that event $Z_i=G_i>q$, so $\mathcal V(S)>q$. This is the Bellman equation for
+$V^\star+K$; the ladders are finite, $\mathcal V$ agrees with $V^\star+K$ at every state with no stage
+left, and backward induction on the stages remaining gives $\mathcal V=V^\star+K$ everywhere. A policy that
+at every state attains the maximum in the Bellman equation of a finite-horizon problem is optimal.
+\end{proof}
+
+At the boundary $\max_iG_i=q$, stopping is optimal and advancing any index-maximal arm is
+also optimal by the same residual calculation. The stated policy chooses to stop on that
+tie; optimal stopping is not asserted to be unique. At equal maximal indices above $q$, any
+measurable tie-breaking rule is valid. No continuity of the reading distributions is needed.
+
+\input{p2_index/algorithm}
+
+\paragraph{Established special cases.}
+The theorem permits dependent readings along an arm through its own history; it requires
+other arms' laws to remain unchanged when that arm is observed.
+
+For terminal-only collection the index is the generalized strike price of \citet[Appendix~G]{kleinberg2016descending}, and the recursion is that of \citet[Section~4, Definition~4]{bowers2024nested}. If every reading is collectable and its scalar transitions are first-order Markov with fixed positive stage costs, the policy is the multi-line
+generalized reservation rule of \citet[Theorem~4.4]{yang2025markovian}. Independent readings
+along a line also recover the corresponding order-constrained result of
+\citet{boodaghians2023order}. Our history-state recursion and the value identity represent
+designated collection and costs in the same construction. The superprocess interpretation
+in Appendix~\ref{app:remarks} supplies the connection to the classical index theorem.
+
+\begin{corollary}[Single-stage Pandora index]\label{cor:pbgi}
+If $T_i=1$ and $\cK_i=\{1\}$ for every arm, $G_i$ solves
+$\E[(Y_i-G_i)^+]=c_i$, and Theorem~\ref{thm:index} is Weitzman's theorem.
+The policy is the independent-candidate PBGI of \citet{xie2024pbgi}.
+\end{corollary}
+\begin{proof}
+With one collectable stage, $W(s)=\Yc=Y$ and $Z(s)=\min\{G(s),Y\}$, so the reservation
+equation of Lemma~\ref{lem:nested} is $\E[(Y-G)^+]=c$ and the value identity of
+Theorem~\ref{thm:index} is Weitzman's.
+\end{proof}
+
+Having only one collectable stage is not sufficient for this corollary if earlier
+noncollectable inspection stages remain: those observations can support adaptive abandonment
+and still require the nested recursion.

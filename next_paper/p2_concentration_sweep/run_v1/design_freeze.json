@@ -1,0 +1,18 @@
+{
+  "frozen_at_utc": "2026-10-30T17:23:13.858114+00:00",
+  "models_sha256": "44ae34e7fbf5470c203b5051d3f208b5bd04ad393ce5289877709bcec8733141",
+  "priors": [
+    "1/2",
+    "1/4",
+    "1/10",
+    "1/40",
+    "1/160"
+  ],
+  "sources": {
+    "p2_concentration_sweep.py": "d54d5b561eb5214e9b5af8eba72b5eda603b9c7d26ccd90efafb46abadfb084b",
+    "p2_index_robustness.py": "1c85c0890d58daa28c0b6b9b48d6f3bcc13542a2a92525091b70be7408dde09a",
+    "staged_pandora_exact.py": "1682800b340ef37ece19fc44f149ca1fbd60847d7c1982e5c6ce75a4e1ac1386"
+  },
+  "python": "3.12.12 | packaged by conda-forge | (main, Jan 27 2026, 00:01:15) [Clang 19.1.7 ]",
+  "platform": "macOS-14.0-arm64-arm-64bit"
+}

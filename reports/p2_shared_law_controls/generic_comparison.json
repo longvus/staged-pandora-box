@@ -1,0 +1,183 @@
+{
+  "cases": 20,
+  "records": [
+    {
+      "reliability": "1/2",
+      "lam": "0",
+      "root_joint_product_tv": "0",
+      "regret": "0",
+      "generic_occupancy_bound": "0",
+      "generic_root_tv_bound": "0"
+    },
+    {
+      "reliability": "1/2",
+      "lam": "1/100",
+      "root_joint_product_tv": "3/312500",
+      "regret": "0",
+      "generic_occupancy_bound": "423/6250000",
+      "generic_root_tv_bound": "324/390625"
+    },
+    {
+      "reliability": "1/2",
+      "lam": "1/10",
+      "root_joint_product_tv": "3/3125",
+      "regret": "0",
+      "generic_occupancy_bound": "423/62500",
+      "generic_root_tv_bound": "1296/15625"
+    },
+    {
+      "reliability": "1/2",
+      "lam": "1/2",
+      "root_joint_product_tv": "3/125",
+      "regret": "0",
+      "generic_occupancy_bound": "423/2500",
+      "generic_root_tv_bound": "1296/625"
+    },
+    {
+      "reliability": "1/2",
+      "lam": "1",
+      "root_joint_product_tv": "12/125",
+      "regret": "0",
+      "generic_occupancy_bound": "423/625",
+      "generic_root_tv_bound": "5184/625"
+    },
+    {
+      "reliability": "3/4",
+      "lam": "0",
+      "root_joint_product_tv": "0",
+      "regret": "0",
+      "generic_occupancy_bound": "0",
+      "generic_root_tv_bound": "0"
+    },
+    {
+      "reliability": "3/4",
+      "lam": "1/100",
+      "root_joint_product_tv": "3/312500",
+      "regret": "3/12500000",
+      "generic_occupancy_bound": "47899622044341693/751832564978112500000",
+      "generic_root_tv_bound": "324/390625"
+    },
+    {
+      "reliability": "3/4",
+      "lam": "1/10",
+      "root_joint_product_tv": "3/3125",
+      "regret": "3/125000",
+      "generic_occupancy_bound": "134099716157379/21047775846500000",
+      "generic_root_tv_bound": "1296/15625"
+    },
+    {
+      "reliability": "3/4",
+      "lam": "1/2",
+      "root_joint_product_tv": "3/125",
+      "regret": "3/5000",
+      "generic_occupancy_bound": "30541928877/191633180000",
+      "generic_root_tv_bound": "1296/625"
+    },
+    {
+      "reliability": "3/4",
+      "lam": "1",
+      "root_joint_product_tv": "12/125",
+      "regret": "17/10000",
+      "generic_occupancy_bound": "7540999857/11804720000",
+      "generic_root_tv_bound": "5184/625"
+    },
+    {
+      "reliability": "9/10",
+      "lam": "0",
+      "root_joint_product_tv": "0",
+      "regret": "0",
+      "generic_occupancy_bound": "0",
+      "generic_root_tv_bound": "0"
+    },
+    {
+      "reliability": "9/10",
+      "lam": "1/100",
+      "root_joint_product_tv": "3/312500",
+      "regret": "0",
+      "generic_occupancy_bound": "901917889860367593/18840994794028268750000",
+      "generic_root_tv_bound": "324/390625"
+    },
+    {
+      "reliability": "9/10",
+      "lam": "1/10",
+      "root_joint_product_tv": "3/3125",
+      "regret": "0",
+      "generic_occupancy_bound": "160236831813257/33472510864187500",
+      "generic_root_tv_bound": "1296/15625"
+    },
+    {
+      "reliability": "9/10",
+      "lam": "1/2",
+      "root_joint_product_tv": "3/125",
+      "regret": "0",
+      "generic_occupancy_bound": "6809079798819/56858940722500",
+      "generic_root_tv_bound": "1296/625"
+    },
+    {
+      "reliability": "9/10",
+      "lam": "1",
+      "root_joint_product_tv": "12/125",
+      "regret": "0",
+      "generic_occupancy_bound": "2134897240257/4446315566875",
+      "generic_root_tv_bound": "5184/625"
+    },
+    {
+      "reliability": "1",
+      "lam": "0",
+      "root_joint_product_tv": "0",
+      "regret": "0",
+      "generic_occupancy_bound": "0",
+      "generic_root_tv_bound": "0"
+    },
+    {
+      "reliability": "1",
+      "lam": "1/100",
+      "root_joint_product_tv": "3/312500",
+      "regret": "0",
+      "generic_occupancy_bound": "27/781250",
+      "generic_root_tv_bound": "324/390625"
+    },
+    {
+      "reliability": "1",
+      "lam": "1/10",
+      "root_joint_product_tv": "3/3125",
+      "regret": "0",
+      "generic_occupancy_bound": "54/15625",
+      "generic_root_tv_bound": "1296/15625"
+    },
+    {
+      "reliability": "1",
+      "lam": "1/2",
+      "root_joint_product_tv": "3/125",
+      "regret": "0",
+      "generic_occupancy_bound": "54/625",
+      "generic_root_tv_bound": "1296/625"
+    },
+    {
+      "reliability": "1",
+      "lam": "1",
+      "root_joint_product_tv": "12/125",
+      "regret": "0",
+      "generic_occupancy_bound": "216/625",
+      "generic_root_tv_bound": "5184/625"
+    }
+  ],
+  "nuisance": {
+    "states": 31,
+    "actions": 30,
+    "regret": "0",
+    "utility": "177/250",
+    "optimal": "177/250",
+    "refined_bound": "0",
+    "signed_bound": "0",
+    "call_uniform": "0",
+    "tv_uniform": "28/5",
+    "min_gamma": "0",
+    "max_call": "0",
+    "max_tv": "7/10",
+    "root_joint_product_tv": "1/2",
+    "generic_occupancy_bound": "9/5",
+    "generic_root_tv_bound": "216/5"
+  },
+  "interpretation": "Generic root-TV perturbation already gives O(lambda^2), including noiseless signals. Call envelope is stricter than full TV but is a value-aware/stop-loss specialization."
+}

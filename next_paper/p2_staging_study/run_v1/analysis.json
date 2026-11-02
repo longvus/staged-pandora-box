@@ -1,0 +1,132 @@
+{
+  "signal_accuracy_contrasts": {
+    "constant_cost/terminal": {
+      "adjacent_increases": 62,
+      "adjacent_ties": 18,
+      "adjacent_decreases": 0,
+      "endpoint_min": "0",
+      "endpoint_max": "1033/3200",
+      "endpoint_mean": "49/320"
+    },
+    "constant_cost/mixed": {
+      "adjacent_increases": 30,
+      "adjacent_ties": 34,
+      "adjacent_decreases": 16,
+      "endpoint_min": "-97/3200",
+      "endpoint_max": "7/64",
+      "endpoint_mean": "231/6400"
+    },
+    "constant_cost/all": {
+      "adjacent_increases": 14,
+      "adjacent_ties": 0,
+      "adjacent_decreases": 66,
+      "endpoint_min": "-277/3200",
+      "endpoint_max": "7/320",
+      "endpoint_mean": "-21/512"
+    },
+    "history_cost/terminal": {
+      "adjacent_increases": 64,
+      "adjacent_ties": 16,
+      "adjacent_decreases": 0,
+      "endpoint_min": "0",
+      "endpoint_max": "2381/6400",
+      "endpoint_mean": "8653/51200"
+    },
+    "history_cost/mixed": {
+      "adjacent_increases": 31,
+      "adjacent_ties": 36,
+      "adjacent_decreases": 13,
+      "endpoint_min": "-1/100",
+      "endpoint_max": "517/3200",
+      "endpoint_mean": "2369/51200"
+    },
+    "history_cost/all": {
+      "adjacent_increases": 15,
+      "adjacent_ties": 0,
+      "adjacent_decreases": 65,
+      "endpoint_min": "-13/160",
+      "endpoint_max": "109/2560",
+      "endpoint_mean": "-4353/102400"
+    }
+  },
+  "illustrative_cells": {
+    "constant_cost/terminal/a=1/2/k=1/50/c=3/5": {
+      "utility": "0",
+      "initial_indices": [
+        "-7/50",
+        "-3/10"
+      ],
+      "stage_advances": [
+        "0",
+        "0",
+        "0"
+      ],
+      "opened_unfinished": "0"
+    },
+    "constant_cost/terminal/a=1/k=1/50/c=3/5": {
+      "utility": "171/800",
+      "initial_indices": [
+        "17/50",
+        "7/40"
+      ],
+      "stage_advances": [
+        "3/2",
+        "3/4",
+        "3/4"
+      ],
+      "opened_unfinished": "3/4"
+    },
+    "constant_cost/all/a=1/2/k=1/50/c=3/5": {
+      "utility": "23/50",
+      "initial_indices": [
+        "13/25",
+        "1/2"
+      ],
+      "stage_advances": [
+        "3/2",
+        "3/2",
+        "0"
+      ],
+      "opened_unfinished": "3/2"
+    },
+    "constant_cost/all/a=1/k=1/50/c=3/5": {
+      "utility": "321/800",
+      "initial_indices": [
+        "27/50",
+        "21/40"
+      ],
+      "stage_advances": [
+        "3/2",
+        "3/4",
+        "0"
+      ],
+      "opened_unfinished": "3/2"
+    },
+    "deterministic/terminal/a=None/k=1/50/c=4/5": {
+      "utility": "4/25",
+      "initial_indices": [
+        "4/25",
+        "-3/10"
+      ],
+      "stage_advances": [
+        "1",
+        "1",
+        "1"
+      ],
+      "opened_unfinished": "0"
+    },
+    "deterministic/all/a=None/k=1/50/c=4/5": {
+      "utility": "23/50",
+      "initial_indices": [
+        "23/50",
+        "13/40"
+      ],
+      "stage_advances": [
+        "1",
+        "1",
+        "0"
+      ],
+      "opened_unfinished": "1"
+    }
+  }
+}

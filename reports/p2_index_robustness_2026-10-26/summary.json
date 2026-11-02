@@ -1,0 +1,18 @@
+{
+  "instances": 453,
+  "grid_instances": 432,
+  "histories": 24309,
+  "actions": 21042,
+  "grid_positive_regrets": 4,
+  "grid_max_regret": "349/50000",
+  "negative_correction_instances": 148,
+  "independent_controls": 48,
+  "max_independent_regret": "0",
+  "grid_bound_informative_below_one": 432,
+  "hashes": {
+    "next_paper/run_p2_index_robustness.py": "bbe7688fe9f60662e39f78c8ee9780bbecb43117d5c200074b63e8e264ae25ae",
+    "next_paper/p2_index_robustness.py": "1c85c0890d58daa28c0b6b9b48d6f3bcc13542a2a92525091b70be7408dde09a",
+    "next_paper/staged_pandora_exact.py": "1682800b340ef37ece19fc44f149ca1fbd60847d7c1982e5c6ce75a4e1ac1386",
+    "reports/p2_index_robustness_2026-10-26/PROTOCOL.md": "2ed466520bbbf979f318ac2f4ef52779856a86f0a7ae01e8998d499fbb9afed5"
+  }
+}

@@ -1,0 +1,43 @@
+\section{Connection to Classical Superprocess Indices}
+\label{app:remarks}
+
+\begin{remark}[The theorem as a superprocess index theorem]\label{rem:whittle}
+Adding to an arm a free \emph{keep} transition that pays the running maximum of its collectable
+readings would encode the collectable set in the Markovian boxes of \citet{gupta2019markovian},
+but it gives the arm two actions and leaves the class of Markov chains for that of decision
+processes, which is why the reduction is to the superprocess theorem and not to the Markovian box.
+In the language of \citet{whittle1980gittins} and \citet[\S5.2.2]{scully2025gittins}, who call the setting MDP selection, a
+nonterminal arm at state $s$ with best previously collectable reading $M$ can \emph{advance}
+at reward $-c(s)$ or \emph{keep} $M$ and terminate the selection. When none has been observed,
+$M=-\infty$ and keeping is unavailable. Including an outside retirement value $\alpha$ gives
+the local value
+\[
+r+\Phi(s;r)^+,\qquad r=\max\{\alpha,M\},
+\]
+by Lemma~\ref{lem:nested}. Here advance is compared with the better of \emph{both} immediate
+options, not with keeping $M$ alone: retirement can exceed $M$.
+
+Whittle's condition asks for one non-retirement action, chosen independently of $\alpha$,
+such that this action or retirement is optimal for every $\alpha$. The choice is
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Condition at the arm state & Retained action & Retirement optimal for \\
+\midrule
+$M> -\infty$, $M\ge G(s)$ & keep & $\alpha\ge M$ \\
+$M<G(s)$ & advance & $\alpha\ge G(s)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Below the displayed retirement threshold, the retained action is optimal;
+at the threshold both may be chosen. Its identity depends only on the fixed
+arm state, through $M$ and $G(s)$, while the choice to retire may depend on $\alpha$.
+If both $M$ and $G(s)$ are $-\infty$, retirement is optimal for every finite $\alpha$;
+any available advance may be the designated action in that vacuous case.
+The resulting outside-option threshold is $\max\{M,G(s)\}$. With the incumbent represented
+as a deterministic retirement option (equivalently, a dummy arm), it yields
+$\pi_{\rm IX}$ in the terminating selection setting of \citet{glazebrook1979stoppable}. This is a connection to classical theory; the direct Bellman
+verification in Theorem~\ref{thm:index} already establishes optimality for the stated model.
+The nonobligatory-inspection hardness does not apply because an unobserved reward cannot be kept.
+\end{remark}
+

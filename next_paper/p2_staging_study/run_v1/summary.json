@@ -1,0 +1,461 @@
+{
+  "cells": 660,
+  "exact_failures": 0,
+  "bellman_state_evaluations": 48840,
+  "advance_action_checks": 74160,
+  "groups": {
+    "constant_cost/terminal": {
+      "cells": 100,
+      "root_stop_cells": 24,
+      "policies": {
+        "index": {
+          "utility": "75837049/327680000",
+          "reward": "157193/327680",
+          "cost": "81355951/327680000",
+          "advances": "2066781/819200",
+          "opened_unfinished": "68583/163840",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "-57/2000",
+          "reward": "0",
+          "cost": "57/2000",
+          "advances": "19/25",
+          "opened_unfinished": "19/25",
+          "stop_loss": "85175929/327680000",
+          "advance_loss": "0",
+          "loss": "85175929/327680000",
+          "positive_loss_cells": 76
+        },
+        "lowest_index_first": {
+          "utility": "32690287/163840000",
+          "reward": "40939/81920",
+          "cost": "49187713/163840000",
+          "advances": "637203/204800",
+          "opened_unfinished": "191717/204800",
+          "stop_loss": "0",
+          "advance_loss": "418259/13107200",
+          "loss": "418259/13107200",
+          "positive_loss_cells": 100
+        },
+        "one_extra_at_stop": {
+          "utility": "49047/262144",
+          "reward": "43147/81920",
+          "cost": "445117/1310720",
+          "advances": "2910801/819200",
+          "opened_unfinished": "744527/819200",
+          "stop_loss": "0",
+          "advance_loss": "14528299/327680000",
+          "loss": "14528299/327680000",
+          "positive_loss_cells": 99
+        }
+      }
+    },
+    "constant_cost/mixed": {
+      "cells": 100,
+      "root_stop_cells": 0,
+      "policies": {
+        "index": {
+          "utility": "113390329/327680000",
+          "reward": "1080117/2048000",
+          "cost": "59428391/327680000",
+          "advances": "1062137/409600",
+          "opened_unfinished": "410887/409600",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "5/32",
+          "reward": "1/5",
+          "cost": "7/160",
+          "advances": "1",
+          "opened_unfinished": "1",
+          "stop_loss": "62190329/327680000",
+          "advance_loss": "0",
+          "loss": "62190329/327680000",
+          "positive_loss_cells": 100
+        },
+        "lowest_index_first": {
+          "utility": "54966453/163840000",
+          "reward": "855717/1638400",
+          "cost": "30605247/163840000",
+          "advances": "2192481/819200",
+          "opened_unfinished": "185523/163840",
+          "stop_loss": "0",
+          "advance_loss": "3457423/327680000",
+          "loss": "3457423/327680000",
+          "positive_loss_cells": 100
+        },
+        "one_extra_at_stop": {
+          "utility": "9900717/32768000",
+          "reward": "4467721/8192000",
+          "cost": "7970167/32768000",
+          "advances": "2927953/819200",
+          "opened_unfinished": "966127/819200",
+          "stop_loss": "0",
+          "advance_loss": "14383159/327680000",
+          "loss": "14383159/327680000",
+          "positive_loss_cells": 100
+        }
+      }
+    },
+    "constant_cost/all": {
+      "cells": 100,
+      "root_stop_cells": 0,
+      "policies": {
+        "index": {
+          "utility": "144875491/327680000",
+          "reward": "495299/819200",
+          "cost": "53244109/327680000",
+          "advances": "1246323/409600",
+          "opened_unfinished": "436701/409600",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "5/32",
+          "reward": "1/5",
+          "cost": "7/160",
+          "advances": "1",
+          "opened_unfinished": "1",
+          "stop_loss": "93675491/327680000",
+          "advance_loss": "0",
+          "loss": "93675491/327680000",
+          "positive_loss_cells": 100
+        },
+        "lowest_index_first": {
+          "utility": "17544739/40960000",
+          "reward": "4931279/8192000",
+          "cost": "888957/5120000",
+          "advances": "315591/102400",
+          "opened_unfinished": "118081/102400",
+          "stop_loss": "0",
+          "advance_loss": "4517579/327680000",
+          "loss": "4517579/327680000",
+          "positive_loss_cells": 100
+        },
+        "one_extra_at_stop": {
+          "utility": "10521179/32768000",
+          "reward": "263059/409600",
+          "cost": "10523541/32768000",
+          "advances": "329921/81920",
+          "opened_unfinished": "561403/409600",
+          "stop_loss": "0",
+          "advance_loss": "39663701/327680000",
+          "loss": "39663701/327680000",
+          "positive_loss_cells": 100
+        }
+      }
+    },
+    "history_cost/terminal": {
+      "cells": 100,
+      "root_stop_cells": 26,
+      "policies": {
+        "index": {
+          "utility": "8480209/40960000",
+          "reward": "37373/81920",
+          "cost": "10206291/40960000",
+          "advances": "99829/40960",
+          "opened_unfinished": "92079/204800",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "-273/10000",
+          "reward": "0",
+          "cost": "273/10000",
+          "advances": "37/50",
+          "opened_unfinished": "37/50",
+          "stop_loss": "9598417/40960000",
+          "advance_loss": "0",
+          "loss": "9598417/40960000",
+          "positive_loss_cells": 74
+        },
+        "lowest_index_first": {
+          "utility": "11318761/65536000",
+          "reward": "771089/1638400",
+          "cost": "19524799/65536000",
+          "advances": "2463649/819200",
+          "opened_unfinished": "797183/819200",
+          "stop_loss": "0",
+          "advance_loss": "11247867/327680000",
+          "loss": "11247867/327680000",
+          "positive_loss_cells": 100
+        },
+        "one_extra_at_stop": {
+          "utility": "103631621/655360000",
+          "reward": "801073/1638400",
+          "cost": "216797579/655360000",
+          "advances": "2806157/819200",
+          "opened_unfinished": "792979/819200",
+          "stop_loss": "0",
+          "advance_loss": "32051723/655360000",
+          "loss": "32051723/655360000",
+          "positive_loss_cells": 100
+        }
+      }
+    },
+    "history_cost/mixed": {
+      "cells": 100,
+      "root_stop_cells": 0,
+      "policies": {
+        "index": {
+          "utility": "53928057/163840000",
+          "reward": "4095157/8192000",
+          "cost": "27975083/163840000",
+          "advances": "2023301/819200",
+          "opened_unfinished": "177791/163840",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "5/32",
+          "reward": "1/5",
+          "cost": "7/160",
+          "advances": "1",
+          "opened_unfinished": "1",
+          "stop_loss": "28328057/163840000",
+          "advance_loss": "0",
+          "loss": "28328057/163840000",
+          "positive_loss_cells": 100
+        },
+        "lowest_index_first": {
+          "utility": "20906711/65536000",
+          "reward": "2030897/4096000",
+          "cost": "11587641/65536000",
+          "advances": "522769/204800",
+          "opened_unfinished": "245983/204800",
+          "stop_loss": "0",
+          "advance_loss": "3322559/327680000",
+          "loss": "3322559/327680000",
+          "positive_loss_cells": 100
+        },
+        "one_extra_at_stop": {
+          "utility": "183455549/655360000",
+          "reward": "208787/409600",
+          "cost": "150603651/655360000",
+          "advances": "2813327/819200",
+          "opened_unfinished": "1242769/819200",
+          "stop_loss": "0",
+          "advance_loss": "32256679/655360000",
+          "loss": "32256679/655360000",
+          "positive_loss_cells": 100
+        }
+      }
+    },
+    "history_cost/all": {
+      "cells": 100,
+      "root_stop_cells": 0,
+      "policies": {
+        "index": {
+          "utility": "277756431/655360000",
+          "reward": "480457/819200",
+          "cost": "106609169/655360000",
+          "advances": "2417667/819200",
+          "opened_unfinished": "182169/163840",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "5/32",
+          "reward": "1/5",
+          "cost": "7/160",
+          "advances": "1",
+          "opened_unfinished": "1",
+          "stop_loss": "175356431/655360000",
+          "advance_loss": "0",
+          "loss": "175356431/655360000",
+          "positive_loss_cells": 100
+        },
+        "lowest_index_first": {
+          "utility": "67151227/163840000",
+          "reward": "2407461/4096000",
+          "cost": "29147213/163840000",
+          "advances": "2480971/819200",
+          "opened_unfinished": "195889/163840",
+          "stop_loss": "0",
+          "advance_loss": "9151523/655360000",
+          "loss": "9151523/655360000",
+          "positive_loss_cells": 100
+        },
+        "one_extra_at_stop": {
+          "utility": "37682709/131072000",
+          "reward": "2564071/4096000",
+          "cost": "44367563/131072000",
+          "advances": "3242919/819200",
+          "opened_unfinished": "1160921/819200",
+          "stop_loss": "0",
+          "advance_loss": "44671443/327680000",
+          "loss": "44671443/327680000",
+          "positive_loss_cells": 100
+        }
+      }
+    },
+    "deterministic/terminal": {
+      "cells": 20,
+      "root_stop_cells": 1,
+      "policies": {
+        "index": {
+          "utility": "201/400",
+          "reward": "19/20",
+          "cost": "179/400",
+          "advances": "57/20",
+          "opened_unfinished": "0",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "-31/800",
+          "reward": "0",
+          "cost": "31/800",
+          "advances": "19/20",
+          "opened_unfinished": "19/20",
+          "stop_loss": "433/800",
+          "advance_loss": "0",
+          "loss": "433/800",
+          "positive_loss_cells": 19
+        },
+        "lowest_index_first": {
+          "utility": "1433/3200",
+          "reward": "19/20",
+          "cost": "1607/3200",
+          "advances": "77/20",
+          "opened_unfinished": "1",
+          "stop_loss": "0",
+          "advance_loss": "7/128",
+          "loss": "7/128",
+          "positive_loss_cells": 20
+        },
+        "one_extra_at_stop": {
+          "utility": "1453/3200",
+          "reward": "1",
+          "cost": "1747/3200",
+          "advances": "79/20",
+          "opened_unfinished": "19/20",
+          "stop_loss": "0",
+          "advance_loss": "31/640",
+          "loss": "31/640",
+          "positive_loss_cells": 19
+        }
+      }
+    },
+    "deterministic/mixed": {
+      "cells": 20,
+      "root_stop_cells": 1,
+      "policies": {
+        "index": {
+          "utility": "201/400",
+          "reward": "19/20",
+          "cost": "179/400",
+          "advances": "57/20",
+          "opened_unfinished": "0",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "-31/800",
+          "reward": "0",
+          "cost": "31/800",
+          "advances": "19/20",
+          "opened_unfinished": "19/20",
+          "stop_loss": "433/800",
+          "advance_loss": "0",
+          "loss": "433/800",
+          "positive_loss_cells": 19
+        },
+        "lowest_index_first": {
+          "utility": "1433/3200",
+          "reward": "19/20",
+          "cost": "1607/3200",
+          "advances": "77/20",
+          "opened_unfinished": "1",
+          "stop_loss": "0",
+          "advance_loss": "7/128",
+          "loss": "7/128",
+          "positive_loss_cells": 20
+        },
+        "one_extra_at_stop": {
+          "utility": "1453/3200",
+          "reward": "1",
+          "cost": "1747/3200",
+          "advances": "79/20",
+          "opened_unfinished": "19/20",
+          "stop_loss": "0",
+          "advance_loss": "31/640",
+          "loss": "31/640",
+          "positive_loss_cells": 19
+        }
+      }
+    },
+    "deterministic/all": {
+      "cells": 20,
+      "root_stop_cells": 0,
+      "policies": {
+        "index": {
+          "utility": "233/400",
+          "reward": "4/5",
+          "cost": "87/400",
+          "advances": "13/5",
+          "opened_unfinished": "2/5",
+          "stop_loss": "0",
+          "advance_loss": "0",
+          "loss": "0",
+          "positive_loss_cells": 0
+        },
+        "stop_after_one": {
+          "utility": "-7/160",
+          "reward": "0",
+          "cost": "7/160",
+          "advances": "1",
+          "opened_unfinished": "1",
+          "stop_loss": "501/800",
+          "advance_loss": "0",
+          "loss": "501/800",
+          "positive_loss_cells": 20
+        },
+        "lowest_index_first": {
+          "utility": "1689/3200",
+          "reward": "4/5",
+          "cost": "871/3200",
+          "advances": "18/5",
+          "opened_unfinished": "7/5",
+          "stop_loss": "0",
+          "advance_loss": "7/128",
+          "loss": "7/128",
+          "positive_loss_cells": 20
+        },
+        "one_extra_at_stop": {
+          "utility": "1689/3200",
+          "reward": "4/5",
+          "cost": "871/3200",
+          "advances": "18/5",
+          "opened_unfinished": "7/5",
+          "stop_loss": "0",
+          "advance_loss": "7/128",
+          "loss": "7/128",
+          "positive_loss_cells": 20
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 7.147285875005764,
+  "completed_at_utc": "2026-11-02T05:49:38.873282+00:00",
+  "source_hashes_unchanged": true
+}

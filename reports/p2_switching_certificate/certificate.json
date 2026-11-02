@@ -1,0 +1,130 @@
+{
+  "cost_interval": [
+    "19/100",
+    "1/5"
+  ],
+  "split_point": "(2407-sqrt(632689))/8400",
+  "intervals": [
+    {
+      "open_interval": [
+        "19/100",
+        "c*"
+      ],
+      "sample": "383/2000",
+      "states": 49,
+      "strict_checks": 78,
+      "affine_interval_checks": 105,
+      "decisions": 12971,
+      "distinct_decision_functions": 1292,
+      "regions": [
+        {
+          "lo": "0",
+          "hi": "15/19",
+          "action": "A"
+        },
+        {
+          "lo": "15/19",
+          "hi": "-12*(35*c - 11)/(5*(7*c + 10))",
+          "action": "B"
+        },
+        {
+          "lo": "-12*(35*c - 11)/(5*(7*c + 10))",
+          "hi": "12*(65*c - 24)/(5*(107*c - 50))",
+          "action": "A"
+        },
+        {
+          "lo": "12*(65*c - 24)/(5*(107*c - 50))",
+          "hi": "1",
+          "action": "B"
+        }
+      ]
+    },
+    {
+      "open_interval": [
+        "c*",
+        "1/5"
+      ],
+      "sample": "49/250",
+      "states": 49,
+      "strict_checks": 78,
+      "affine_interval_checks": 105,
+      "decisions": 12970,
+      "distinct_decision_functions": 1293,
+      "regions": [
+        {
+          "lo": "0",
+          "hi": "15/19",
+          "action": "A"
+        },
+        {
+          "lo": "15/19",
+          "hi": "-12*(35*c - 11)/(5*(7*c + 10))",
+          "action": "B"
+        },
+        {
+          "lo": "-12*(35*c - 11)/(5*(7*c + 10))",
+          "hi": "12*(65*c - 24)/(5*(107*c - 50))",
+          "action": "A"
+        },
+        {
+          "lo": "12*(65*c - 24)/(5*(107*c - 50))",
+          "hi": "1",
+          "action": "B"
+        }
+      ]
+    }
+  ],
+  "points": [
+    {
+      "cost": "19/100",
+      "states": 49,
+      "strict_checks": 78,
+      "affine_interval_checks": 105
+    },
+    {
+      "cost": "c*",
+      "states": 49,
+      "strict_checks": 78,
+      "affine_interval_checks": 105
+    },
+    {
+      "cost": "1/5",
+      "states": 49,
+      "strict_checks": 78,
+      "affine_interval_checks": 105
+    }
+  ],
+  "intervals_B_only": [
+    {
+      "sample": "383/2000",
+      "states": 49,
+      "strict_checks": 72,
+      "decisions": 11669,
+      "distinct_decision_functions": 1168
+    },
+    {
+      "sample": "49/250",
+      "states": 49,
+      "strict_checks": 72,
+      "decisions": 11668,
+      "distinct_decision_functions": 1169
+    }
+  ],
+  "root_ordering_on_closed_interval": true,
+  "symbolic_outputs_identical_across_split": true,
+  "contrast_terminal_only": {
+    "decisions": 4038,
+    "distinct_decision_functions": 450,
+    "states": 49,
+    "strict_checks": 24,
+    "unique_first_action": "A on (0,1)"
+  },
+  "contrast_A_intermediate_only": {
+    "decisions": 4718,
+    "distinct_decision_functions": 519,
+    "states": 49,
+    "strict_checks": 30,
+    "unique_first_action": "A on (0,1)"
+  },
+  "theorem_proved": true
+}

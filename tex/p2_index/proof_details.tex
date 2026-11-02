@@ -1,0 +1,140 @@
+\section{Notation and Local Stopping Details}
+\label{app:proof-details}
+
+\subsection{Notation and literature conventions}
+\label{app:notation}
+
+An arm's own state $s_i$ consists of its stage and observation history;
+$S$ records the full search history. The remaining depth is $\nu_i=T_i-t_i$,
+$\cK_i$ is the collectable set, and $K(S)$ is sunk cost. The forced-run gain
+$\Phi(s;r)$ excludes immediate stopping; the keep-or-run value is
+$r+\Phi(s;r)^+$. At exhaustion that value remains $r$. A suffix without a
+collectable stage has index and cap $-\infty$; differences such as $W-G$ are
+used only for finite $G$. The full-path variables $W,Z$ are not disclosed by
+one advance.
+
+For terminal-only collection, $G_i,Z_i$ correspond to the nested strike and
+capped values $\sigma_i^{(\ell)},\kappa_i^{(\ell)}$ of
+\citet[Definition~4]{bowers2024nested}, with $\ell=t_i+1$, and $W_i$ to their
+next capped value. Our forced gain differs from the total equivalent-reward
+function called $\Phi$ by \citet[Definition~3.2]{yang2025markovian}.
+
+The per-arm path law is $\mathsf P_i^{s_i}$. Under sharing, $\mathsf P$ is the
+coherent joint law, $\mathsf P_{j,S}$ a posterior arm marginal, and
+$\mathsf Q_S=\bigotimes_j\mathsf P_{j,S}$ the synthetic product reference.
+The action value $Q_\pi(S,i)=\E[V_\pi(S')]$ includes the advance cost through
+$K(S')$; $U_\pi=V_\pi+K$ removes sunk costs. Expectations at a starting state
+use its specified kernel and count further advances from zero, including for
+exact real-valued histories of probability zero. Conditional on that state,
+all remaining rewards and costs are bounded.
+
+\subsection{Stopping-rule attainment}
+
+\begin{lemma}[Finite-horizon arm-run recursion]\label{lem:run-dp}
+Under Assumption~\ref{assm:standing}, the forced-run value
+$(S,r)\mapsto\Phi_i^{(k)}(S;r)$ is jointly Borel measurable on states at which $i$ is
+available. Its supremum is attained by a stopping rule chosen measurably in $(S,r)$.
+This holds for an arbitrary fixed planning kernel, including a shared one.
+\end{lemma}
+\begin{proof}
+For an auxiliary outside value $r$, set $U_{i,0}(S;r)=0$. For $k\ge1$ and an available $i$,
+define backwards
+\begin{align*}
+B_{i,k}(S;r)&=-c(S,i)+\int\bigl[(\tilde y-r)^+
+ +U_{i,k-1}(F(S,i,y);\max\{r,\tilde y\})\bigr]\,p_\theta(dy\mid S,i),\\
+U_{i,k}(S;r)&=\max\{0,B_{i,k}(S;r)\},
+\end{align*}
+where $\tilde y=y$ if this advance is collectable and $-\infty$ otherwise. Put $U_{i,k}=0$
+at exhausted arms. All functions are jointly Borel by induction: the successor, cost and kernel
+are measurable, integration preserves measurability, and the action maximum is over two
+choices. For each finite $r$ the integrands and values are bounded by the reading bounds and
+the finite remaining cost bound.
+
+Let $m$ readings have been seen along a run and let $r_m=\max\{r,M_m\}$. For any additional
+future maximum $M'$, the identity
+\[
+(\max\{M_m,M'\}-r)^+-(M_m-r)^+=(M'-r_m)^+
+\]
+shows that the earned improvement can be separated from future improvement. The full planning
+state in the recursion is still the actual $S^{(m)}$; replacing $r$ by $r_m$ does not replace
+its incumbent, refit its law, or change its costs. Thus $B_{i,k}$ is the value of forcing one
+advance followed by an optimal continue-or-stop decision, and $U_{i,k}$ includes stopping
+immediately. Backward induction gives
+$B_{i,k}(S;r)=\Phi_i^{(k)}(S;r)$ and $U_{i,k}(S;r)=\Phi_i^{(k)}(S;r)^+$ whenever $i$ is
+available. After the forced first advance, continue precisely where the remaining $B$ is
+positive and stop on a tie or at the cap. These are measurable decisions and give a stopping
+time bounded by $\min\{k,\nu_i\}$ attaining the stated value.
+\end{proof}
+
+For a per-arm law, the recursion depends on $S$ only through $s_i$ and the auxiliary value.
+This justifies the local Bellman equation in Section~\ref{sec:nested} without assuming that
+the latest scalar reading is Markov. Measurability of the reservation indices follows from
+their rational-threshold representation in Section~\ref{sec:setting}; no selection over
+uncountably many stopping rules or candidate actions is needed.
+
+\begin{proof}[Proof of Proposition~\ref{prop:index}]
+The finite-horizon recursion in Lemma~\ref{lem:run-dp} gives a jointly measurable value and
+an attaining stopping rule. In particular, the supremum here does not require an unproved
+measurable selection from a family of stopping times.
+For a fixed run, its positive-part payoff is nonincreasing and $1$-Lipschitz in $r$; these
+properties pass to expectation and supremum. The value is finite, bounded above by
+$(y_{\max}-r)^+-c(S,i)$ and below by the one-advance run. Without a collectable stage within
+the cap every run has strictly negative value, so $G=-\infty$. Otherwise the committed run to
+the next collectable stage has positive value for $r<y_{\min}-\mu_i c_{\max}$, while the upper
+bound is nonpositive for $r\ge y_{\max}-c(S,i)$. The positivity set is therefore a nonempty
+lower interval. Continuity excludes a positive endpoint and forces the value there to be zero,
+giving the strict threshold statement.
+Increasing the cap enlarges the set of runs and cannot decrease the index.
+\end{proof}
+
+\subsection{Proof of the policy identity in Theorem~\ref{thm:loss}}
+\label{app:loss-proof}
+
+\begin{proof}
+Put $H=L(S)$ and $\tau=\tau_\pi\le H$. Let $\mathcal F_b$ contain the observed
+history and any independent policy randomness used to choose the next action. On $b<\tau$,
+the planning kernel gives
+\[
+\E[V^\star(S_{b+1})\mid\mathcal F_b]=Q^\star(S_b,i_b)
+=V^\star(S_b)-\Delta_{i_b}(S_b).
+\]
+The event $\{b<\tau\}$ is $\mathcal F_b$-measurable. Freeze the process after it stops and
+sum this identity over the deterministic range $b=0,\ldots,H-1$, with indicators
+$\mathbf1\{b<\tau\}$. The tower property and telescoping give
+\[
+V^\star(S)-\E[V^\star(S_\tau)]
+=\E\!\left[\sum_{b<\tau}\Delta_{i_b}(S_b)\right].
+\]
+Finally $V^\star(S_\tau)=h(S_\tau)+\Delta_{\rm stop}(S_\tau)$ and
+$V_\pi(S)=\E[h(S_\tau)]$. Every sum is finite and every term bounded conditional on the
+starting state, so no optional-stopping or interchange-of-infinite-limits assumption is used.
+\end{proof}
+
+\subsection{Continuous intermediate collection}
+
+\begin{example}[Continuous, dependent readings with intermediate collection]
+\label{ex:continuous-collection}
+Consider one arm with two collectable stages, $Y_1=U$ and $Y_2=1-U$ for
+$U\sim\operatorname{Uniform}[0,1]$, and costs $c_1=1/8$, $c_2=1/4$.
+The second reading is deterministic conditional on the first, so the within-arm dependence
+is perfect and neither stage is an independent box. At the state after $U=u$,
+\[
+G_2(u)=Z_2(u)=\tfrac34-u,\qquad
+W_1=\max\{U,\tfrac34-U\}.
+\]
+For $r\in[3/8,3/4]$, integration over the two disjoint exceedance intervals gives
+\[
+\E[(W_1-r)^+]=\tfrac12(1-r)^2+\tfrac12(\tfrac34-r)^2.
+\]
+The unique reservation root is therefore
+$G_1=(7-\sqrt7)/8$, which lies in this interval. At incumbent $q=1/2$ and cumulative cost $K=0$,
+\[
+\Phi_1(1/2)=\tfrac{5}{32}-\tfrac18=\tfrac1{32},\qquad
+V^\star=\tfrac{17}{32}.
+\]
+After the first reading, the index policy continues to the second exactly when
+$\tfrac34-u>\max\{1/2,u\}$, or $u<1/4$; equality may be stopped. Direct integration of that
+policy's reward minus both incurred costs gives the same value $17/32$. This is an analytic
+illustration of the recursion with a continuous marginal law and an intermediate collectable
+reading, not a finite-quadrature optimality claim.
+\end{example}

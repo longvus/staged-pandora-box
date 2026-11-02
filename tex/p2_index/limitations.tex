@@ -1,0 +1,28 @@
+\section{Conclusion}
+\label{sec:limitations}
+
+The covered-call representation unifies designated collection, history-dependent prediction
+and own-state costs. It gives the independent value, optimal policy and exact action losses,
+recovers established special cases, prices collection rights and costs, bounds the value of resumption, and
+quantifies how posterior updates under sharing perturb those guarantees through
+changes in local continuation values. A common-component envelope relates those
+changes to predictive total-variation dispersion; its decay must be controlled
+over all feasible future histories.
+
+Exact optimality requires finite independent arm processes, arm-local availability and
+costs, and readings that follow the planning law; general information sharing invalidates the
+proof, and the forward-closure stopping condition is not established for shared surrogates.
+The sharing bound requires a coherent joint path law, arm-local costs, true posterior
+marginals and an envelope over every future feasible history; it is conservative in the exact
+examples and certifies neither posterior accuracy nor numerical index error.
+Weak posterior concentration alone does not imply that this envelope vanishes.
+An unbounded Gaussian predictive law also requires an extension of the stated
+bounded-law assumptions. Continuous
+reading laws require integration or discretization whose policy error is not bounded here,
+observation trees are exponential in depth, and the objective is the best observed
+collectable score less cost, not latent performance under noisy readings. The studies use
+two arms, few outcomes, short ladders and known laws; they measure neither learned-surrogate
+accuracy nor robustness to a misspecified law and establish no empirical superiority for
+hyperparameter optimization. Scaling, misspecification, continuous candidate optimization and
+comparisons with published methods on their own surrogates remain open for the staged
+index; \citet{vu2026coststop} report such comparisons for the one-step rule.

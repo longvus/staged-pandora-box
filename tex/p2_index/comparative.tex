@@ -1,0 +1,104 @@
+\section{Comparative Statics: Rights, Costs and Resumption}
+\label{sec:comparative}
+
+The covered call values also price changes in the problem itself. In this section consider two per-arm problems $\mathcal P$ and $\mathcal P'$, each satisfying Assumption~\ref{assm:standing}, with the same arm path laws, so that each arm's readings are the same random variables under both. Say that $\mathcal P'$ \emph{dominates} $\mathcal P$ if $\cK_i\subseteq\cK_i'$ and
+$c_i'(s)\le c_i(s)$ for every arm and own state: more readings may be kept and
+no advance costs more. Corresponding states share the observed context, hence the own states $s_i$, and have incumbents $q\le q'$; the state of $\mathcal P'$ corresponding to $S$ is written $\bar S$. Primes on $W$, $Z$, $G$, $\Phi$, $\Yc$, $c$, $q$, $V$ and $U$ denote quantities of $\mathcal P'$ throughout this section, while $s'$ keeps its meaning as the successor own state.
+
+\begin{lemma}[Pathwise monotonicity]\label{lem:pathwise}
+If $\mathcal P'$ dominates $\mathcal P$, then at every own state $s$,
+$W'(s)\ge W(s)$ and $Z'(s)\ge Z(s)$ on every remaining path, and $G'(s)\ge G(s)$.
+\end{lemma}
+\begin{proof}
+Backward induction on $\nu(s)$; all three are $-\infty$ when $\nu(s)=0$. At $s$
+with $\nu(s)\ge1$, the collectable reading satisfies $\Yc'\ge\Yc$ because
+$\cK\subseteq\cK'$, and $Z'(s')\ge Z(s')$ by the hypothesis at $s'$, so
+$W'(s)=\max\{\Yc',Z'(s')\}\ge W(s)$. By Lemma~\ref{lem:nested},
+$\Phi'(s;r)=\E[(W'(s)-r)^+]-c'(s)\ge\E[(W(s)-r)^+]-c(s)=\Phi(s;r)$ for every
+$r$, so the positivity set of $\Phi'$ contains that of $\Phi$ and
+Proposition~\ref{prop:index} gives $G'(s)\ge G(s)$. Then
+$Z'(s)=\min\{G'(s),W'(s)\}\ge\min\{G(s),W(s)\}=Z(s)$.
+\end{proof}
+
+\begin{proposition}[Exact comparative statics]\label{prop:comparative}
+Let $\mathcal P'$ dominate $\mathcal P$. At corresponding states $S$ and $\bar S$, with $U=V^\star+K$ as in Section~\ref{sec:setting}, \[ U'(\bar S)-U(S)=\E\Bigl[\bigl(\max\{q',\max_iZ_i'(s_i)\}-\max\{q,\max_iZ_i(s_i)\}\bigr)^+\Bigr]\ge0,
+\]
+the expectation coupling $Z_i$ and $Z_i'$ on arm $i$'s remaining path under
+$\mathsf P_S$. At a common initial state the value of the additional rights or
+lower costs is $\E[(\max_iZ_i'-\max\{q,\max_iZ_i\})^+]$, which vanishes if and
+only if $\max_iZ_i'\le\max\{q,\max_iZ_i\}$ almost surely.
+\end{proposition}
+\begin{proof}
+Theorem~\ref{thm:index} applies to both problems on the common product space, giving $U'(\bar S)-U(S)=\E[\max\{q',\max_iZ_i'\}-\max\{q,\max_iZ_i\}]$. By
+Lemma~\ref{lem:pathwise} and $q'\ge q$ the integrand is nonnegative on every
+path, so it equals its positive part.
+\end{proof}
+
+The identity follows from pathwise monotonicity and the value representation. Its use is
+to price additional collection rights or lower costs from coupled arm-wise covered-call
+values, without solving either joint Bellman problem. It covers enlarging a collectable
+set, removing a history-dependent surcharge, and lowering any own-history cost.
+For one-shot boxes, adding a box or lowering a cost raises the stopping frontier
+\citep[Proposition~2]{bao2026interdependent}. The identity does not cover changes to the
+readings' law, such as adding an observation stage or changing signal accuracy.
+The next result prices the opposite error: planning
+as if fewer readings could be kept.
+
+\begin{proposition}[Planning with a smaller collectable set]\label{prop:fewer-rights}
+Let $\mathcal P'$ dominate $\mathcal P$ with the same costs, so that only the collectable sets differ. Let $\pi_{\cK}$ be the policy for $\mathcal P'$ that stops when $\max_iG_i(s_i)\le q'$ and otherwise advances an arm maximizing the $\mathcal P$-index $G_i(s_i)$, where $q'$ is the incumbent of $\mathcal P'$. Then at corresponding states \[ V^\star(S)\le V_{\pi_{\cK}}(\bar S)\le V^{\star\prime}(\bar S). \] \end{proposition} Its loss against the optimum of $\mathcal P'$ is therefore at most the value of the additional rights; both ends are attained in the study of Appendix~\ref{app:comparative-results}.
+
+Appendix~\ref{app:comparative} proves this and the next result. Finally, the
+loss decomposition prices the freedom to return to a paused arm. Fix a starting state
+$S_0$. A policy \emph{resumes} if it returns to an arm that it has advanced since $S_0$
+after advancing a different arm; a \emph{no-return} policy never resumes, and $V_{\rm NR}(S_0)$
+is its optimal value. This differs from search without recall, or committed search
+\citep[Section~5]{gupta2019markovian}, which forbids returning to an earlier prize:
+a no-return policy retains every collectable reading.
+
+On a path where the index resumes, a no-return policy must depart from its
+trajectory by that advance. We lower-bound the resulting loss by the smallest
+expected Bellman penalty at this first departure; later losses are nonnegative.
+
+To preserve return status in the bound, augment a descendant history with
+$\widehat S=(S,\ell,D)$, where $\ell$ is the last arm advanced since $S_0$
+($\ell=0$ initially) and $D$ is the set of arms advanced and subsequently left since
+$S_0$. An advance of $i$ sets $\ell^+=i$ and
+$D^+=D\cup\{\ell\}$ if $\ell\notin\{0,i\}$, and $D^+=D$ otherwise.
+It is a resumption exactly when $i\in D$ and $i\ne\ell$. This bookkeeping is retained along the
+whole run, including when the last arm is exhausted.
+For the index policy with its fixed tie order, let $\delta(S)$ be the smallest
+loss from Theorem~\ref{thm:loss} of an action other than $\pi_{\rm IX}(S)$,
+with $\min\varnothing=+\infty$. Define $\widehat\rho(\widehat S)$ by finite backward
+recursion: it is zero if the index policy has zero probability of a future resumption
+from this augmented history, equals $\delta(S)$ if its next action resumes, and otherwise
+\[
+ \widehat\rho(\widehat S)
+ =\min\{\delta(S),\E[\widehat\rho(\widehat S_1)\mid\widehat S]\},
+ \qquad \rho(S_0)=\widehat\rho(S_0,0,\varnothing),
+\]
+where $\widehat S_1$ is the successor under the index policy with the bookkeeping above.
+The minimum compares departing now, at penalty $\delta(S)$, with following the
+index one more step and facing a later departure. At the first resumption,
+departure is compulsory. This first-departure calculation gives a lower bound
+on the total resumption gap.
+
+\begin{proposition}[Value of resumption]\label{prop:resumption}
+Under the hypotheses of Theorem~\ref{thm:index}:
+\begin{enumerate}
+\item[(i)] $V^\star(S_0)-V_{\rm NR}(S_0)\ge\rho(S_0)\ge0$, and $V_{\rm NR}(S_0)=V^\star(S_0)$ when $\pi_{\rm IX}$ almost surely never resumes from $S_0$.
+\item[(ii)] If at every state at which $\pi_{\rm IX}$ advances from $S_0$, before or at its first resumption, the index-maximal arm is unique, then $\rho(S_0)>0$ exactly when $\pi_{\rm IX}$ resumes from $S_0$
+ with positive probability.
+\item[(iii)] If every reading is a deterministic function of the arm's own
+ state, $\pi_{\rm IX}$ never resumes under any tie order, so $V_{\rm NR}=V^\star$.
+\end{enumerate}
+\end{proposition}
+
+With deterministic readings an advance either raises the arm's index by its cost
+or lifts the incumbent above its previous index, which rules out resumption.
+Stochastic observations can make resumption valuable by resolving uncertainty in
+collectable rewards, even without changing any unobserved reward's law.
+Example~\ref{ex:resumption-reward} in Appendix~\ref{app:comparative} gives a
+two-arm construction and calculates the values with and without resumption.
+
+Section~\ref{sec:validation} and Appendix~\ref{app:comparative-results}
+evaluate all three results exactly on the staging grid.

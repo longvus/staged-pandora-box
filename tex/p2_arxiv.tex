@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[round]{natbib}
+\renewcommand{\bibname}{References}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage[boxed]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[section]{placeins}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\newtheorem{assumption}{Assumption}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\Yc}{\tilde Y}
+
+\usepackage{graphicx}
+\title{The Staged Pandora's Box: Reservation Indices for Multi-Fidelity Bayesian Optimization}
+\author{Long Vu\textsuperscript{1,2} \quad Jongseong Brad Choi\textsuperscript{1,3}\\[0.25em]
+Binoy Ravindran\textsuperscript{2} \quad Zhoulai Fu\textsuperscript{1,2,3}\\[0.5em]
+{\small \textsuperscript{1}State University of New York Korea}\\
+{\small \textsuperscript{2}Virginia Tech \quad \textsuperscript{3}Stony Brook University}}
+\hypersetup{pdfauthor={Long Vu, Jongseong Brad Choi, Binoy Ravindran, Zhoulai Fu}}
+\date{}
+\begin{document}
+\maketitle
+\input{p2_index/introduction}
+\input{p2_index/related_work}
+\input{p2_index/model}
+\input{p2_index/index}
+\input{p2_index/loss}
+\input{p2_index/comparative}
+\input{p2_index/sharing}
+\input{p2_index/numerical}
+\input{p2_index/limitations}
+\bibliographystyle{plainnat}
+\bibliography{p2}
+\appendix
+\input{p2_index/proof_details}
+\input{p2_index/superprocess}
+\input{p2_index/comparative_details}
+\input{p2_index/sharing_details}
+\clearpage
+\input{p2_index/experiments}
+\input{p2_index/appendix}
+\end{document}

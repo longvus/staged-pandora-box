@@ -1,0 +1,285 @@
+\section{Numerical Verification}
+\label{app:experiments}
+
+The checks use fully specified finite laws, exact rational arithmetic, and a
+joint Bellman solver independent of the arm-wise covered-call recursion.
+Within each instance, policies use the same law, costs, collection rights and
+observation protocol. Table~\ref{tab:verification-summary} summarizes the
+verification; each study's model, checks and results are given together below.
+
+\begin{table}[htb]
+\centering\small
+\begin{tabular}{p{0.25\linewidth}rp{0.53\linewidth}}
+\toprule
+Instance family & Cases & Exact checks \\
+\midrule
+Independent trees & 192 & Value representation, maximal-index actions, stop and advance losses \\
+Staging grid & 660 & Index optimality and accumulated policy losses \\
+Comparative pairs & $1763+60$ & Coupled covered-call overshoot identity on grid and random pairs \\
+Shared-law audit & 453 & Signed residual, policy telescoping, and local-value/path-TV envelopes \\
+Concentration sweep & 240 & Policy accounting and sharing envelopes at five binary-component priors \\
+\bottomrule
+\end{tabular}
+\caption{All checks pass in exact arithmetic against direct Bellman calculations.
+Cases count starting instances, grid cells or problem pairs as indicated;
+they are verification coverage, not independent statistical observations.}
+\label{tab:verification-summary}
+\end{table}
+
+\subsection{Independent-arm verification}
+\label{app:finite-results}
+
+Two independent binary-tree arms are generated in four collection regimes:
+every stage on depth three, terminal only on depth four, $\{1,3\}$ on depth
+three, and $\{2,4\}$ on depth four. At each own history, independently choose
+a cost from $\{1/100,3/100,3/50,1/10\}$, two distinct readings from
+$\{0,1/4,1/2,3/4,1\}$, and a branch probability from $\{1/4,1/2,3/4\}$.
+Each regime uses seeds $2026102400$ through $2026102423$ and is evaluated from
+both the empty state and a prefix after three random feasible advances,
+giving 192 starting instances. Prefixes are chosen without an index or
+stopping criterion and retain their observed incumbent.
+
+The covered-call value, maximal-index actions above the incumbent, and all
+stop and advance losses agree with direct Bellman optimization over
+$23{,}839$ evaluated states and $37{,}467$ available advance actions.
+
+\subsection{Staging and policy-loss verification}
+\label{app:staging-results}
+
+Each independent arm reveals two noisy signals followed by a fair binary
+terminal reward $H_i$. Conditional on $H_i$, signals $S_{i1},S_{i2}$ are
+independent and equal $H_i$ with probability $\alpha$. The readings are
+$(2S_{i1}/5,3S_{i2}/5,H_i)$, and predictions condition on both signals.
+The grid crosses
+\[
+\begin{split}
+ \alpha&\in\{1/2,5/8,3/4,7/8,1\},\qquad
+ k\in\{1/200,1/50,1/20,1/10\},\\
+ c&\in\{1/20,1/5,2/5,3/5,4/5\},\qquad
+ \cK_i\in\{\{3\},\{1,3\},\{1,2,3\}\}.
+\end{split}
+\]
+With arm multipliers $m_i\in\{1,5/4\}$, the constant-cost family uses
+$m_i(k,k,c)$ and the own-history-cost family uses
+\[
+ m_i\left(k,\;k(1+S_{i1}/2),\;
+ c\left(1+\tfrac12\mathbf 1\{S_{i1}\ne S_{i2}\}\right)\right).
+\]
+Each next cost is known before the advance. Deterministic controls have readings
+$(0,1/2,1)$ and $(0,3/8,3/4)$, costs $m_i(k,k,c)$, and the same cost and
+collection grids. There are 100 constant-cost cells, 100 own-history-cost cells
+and 20 deterministic controls per collection regime, giving 660 cells.
+All runs start at $q_0=0$; zero-probability prefixes at $\alpha=1$ are omitted.
+The index stops on an index--incumbent tie and breaks advance ties by the smaller label.
+
+Three specified deviations check Theorem~\ref{thm:loss}.
+\emph{Stop after one} takes the initial index advance and stops, or stops immediately
+if the index does. \emph{Lowest index first} forces a smallest-index available arm
+once, even if stopping was optimal, then follows the index.
+\emph{Extra at stop} follows the index to its first stop, takes one cheapest
+available advance if any, and then follows the index. All action ties favor
+the smaller label. Each deviation's utility loss equals its accumulated stop
+and advance losses in every cell. The index agrees with the Bellman optimum
+over $48{,}840$ state evaluations and $74{,}160$ advance-action checks,
+including all 300 own-history-cost cells.
+
+\subsection{Comparative statics and resumption}
+\label{app:comparative-results}
+
+A dominated transition pairs staging cells with the same path laws and arms,
+but the next larger collectable set, next lower signal cost, next lower terminal
+cost, or constant in place of own-history costs. Coupling each arm's capped
+values verifies Proposition~\ref{prop:comparative} on all $1{,}763$ transitions.
+The identity also holds on 60 random binary-tree pairs of depths two to four
+(seed $20261030$), with enlarged collection sets and costs multiplied by
+$1$, $1/2$ or $3/4$, including unchanged cases.
+
+Table~\ref{tab:comparative} summarizes the three checks by transition type,
+collectable set and cost law.
+For Proposition~\ref{prop:fewer-rights}, terminal-only indices are used under
+intermediate collection in every cell with intermediate rights. The policy
+attains the expanded-rights optimum in nearly half of these cells and, in about
+a quarter, loses the full value of the additional rights, so both ends of the
+proposition's bound are attained. At $\alpha=1/2$, $k=1/200$ and $c=3/5$ with
+$\cK_i=\{1,3\}$, for instance, the terminal-only indices are negative, the
+policy stops at once, and its loss is the full rights value.
+For Proposition~\ref{prop:resumption}, a separate Bellman recursion forbids
+further advances of any arm once another arm is advanced after it, while
+retaining all collectable readings. This gives $V_{\rm NR}$.
+Resumption has positive value exactly in the stochastic cells where the index
+policy resumes, and in no deterministic control; the largest gap is under one
+twentieth of its cell's optimal value. The bound $\rho$ never exceeds the gap,
+is positive in the same cells, and attains the gap in about a fifth of them.
+
+\begin{table}[htb]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+Dominated transition & Pairs & Identity holds \\
+\midrule
+Larger collectable set & 440 & 440 \\
+Lower signal cost & 495 & 495 \\
+Lower terminal cost & 528 & 528 \\
+Constant for own-history costs & 300 & 300 \\
+\midrule
+Collectable set & Cells & Zero loss / full rights value lost \\
+\midrule
+$\{1,3\}$ & 220 & 133 / 50 \\
+$\{1,2,3\}$ & 220 & 70 / 51 \\
+\midrule
+Cost law & Cells & Positive gap / $\rho$ equal to gap / largest gap \\
+\midrule
+Constant & 300 & 76 / 17 / 0.0108 \\
+Own-history & 300 & 59 / 13 / 0.0156 \\
+Deterministic controls & 60 & 0 / 0 / 0.0000 \\
+\bottomrule
+\end{tabular}
+\caption{Comparative statics and resumption on the 660-cell staging grid, in
+exact arithmetic. Top: dominated pairs of cells; the value difference equals
+the covered-call overshoot of Proposition~\ref{prop:comparative} in every pair.
+Middle: terminal-only indices under intermediate collection; the loss lies in
+$[0,V^{\star\prime}-V^\star]$, and the last entry counts cells with positive
+rights value in which all of it is lost. Bottom: the no-return optimum; the gap
+$V^\star-V_{\rm NR}$ is positive exactly where the index policy resumes, and
+$\rho$ never exceeds it.}
+\label{tab:comparative}
+\end{table}
+
+\subsection{Shared-law verification}
+\label{app:sharing-results}
+
+The audit has 432 two-stage binary-latent cells, 12 arbitrary three-stage joint
+laws with own-history costs, and nine settings of the constructed example in
+Appendix~\ref{app:sharing-controls}. All start with unobserved arms and $q_0=0$.
+The joint Bellman solver retains dependence; the index recomputes from the true
+posterior arm marginals after every observation.
+
+\paragraph{Binary-latent grid.}
+Conditional on $\Theta\in\{0,1\}$, complete arm paths are independent.
+Arm $i$ has $R_i\sim\operatorname{Bernoulli}(a_{i\Theta})$ and first signal
+$S_i$ satisfying $\Prob(S_i=R_i\mid R_i,\Theta)=r_i$. Its readings are
+$(s_iS_i,R_i)$, with $(s_A,s_B)=(2/5,3/5)$. The terminal is collectable;
+each first stage can independently be designated collectable, giving four choices.
+Seed $20261026$ generates 12 base models with prior $p_0\in\{1/5,1/2,4/5\}$.
+For each arm choose two distinct component probabilities from
+$\{1/10,1/5,3/10,1/2,7/10,4/5,9/10\}$, $r_i\in\{3/5,3/4,9/10\}$,
+first cost in $\{1/100,1/25,2/25\}$ and terminal cost in $\{1/20,1/5,2/5\}$.
+For each model set
+\[
+\begin{gathered}
+ m_i=(1-p_0)a_{i0}+p_0a_{i1},\qquad
+ a_{i\theta}(\lambda)=m_i+\lambda(a_{i\theta}-m_i),\\
+ \lambda\in\{0,1/100,1/50,1/20,1/10,1/5,2/5,3/5,1\}.
+\end{gathered}
+\]
+This holds the full initial arm marginal laws, costs and collection choices
+fixed within each coupling sweep. At $\lambda=0$ the arms are independent,
+giving 48 independent controls among the $12\times9\times4=432$ cells.
+
+\paragraph{Arbitrary three-stage laws.}
+Continuing the same seeded generator, twelve models assign normalized positive
+integer weights from $\{1,\ldots,9\}$ to all 64 binary joint paths of two
+three-stage arms. Base costs are $(1/20,1/10,1/5)$; the second cost is $1/4$
+after first reading one, and the terminal cost is $1/25$ after prefix $(0,1)$.
+For model $b\in\{0,\ldots,11\}$ and arm $i\in\{0,1\}$, stage one is
+collectable when $(b+i)\bmod2\ne0$, stage two when $(b+i)\bmod3\ne0$, and
+stage three always. These laws test sharing without assuming the binary-latent factorization.
+
+\paragraph{Checks and results.}
+Every feasible prefix and available advance is checked, including histories
+the index never visits. The index stops on an index--incumbent tie and breaks
+advance ties by smaller label. The Bellman policy used for the refined bound
+favors advances over stopping, then smaller label; this fixes its occupancy at
+a value tie. Policy telescoping is checked for the index, the true optimum,
+immediate stopping, and a smallest-label always-advance policy.
+Uniform envelopes maximize over all feasible histories; the refined bound
+uses optimal-policy occupancy and is an oracle diagnostic.
+Across the 453 cells, the signed residual, telescoping and call/TV inequalities
+hold over $24{,}309$ feasible prefixes and $21{,}042$ available advances.
+The independent controls have zero sharing envelopes and zero regret.
+Negative signed corrections occur, supporting the two-sided accounting
+in~\eqref{eq:sharing-refined}. Counts measure verification coverage;
+these known-law checks do not assess learned-surrogate accuracy or practical
+optimization performance.
+
+\subsection{Positive regret, shared nuisance and concentration}
+\label{app:sharing-controls}
+
+\paragraph{Positive-regret example.}
+Use the binary-latent construction above with $p_0=4/5$,
+$(a_{A0},a_{A1})=(4/5,1/5)$, $(a_{B0},a_{B1})=(7/10,1/5)$,
+$r_A=r_B=3/4$, first scores $(2/5,3/5)$, first costs $(19/500,1/20)$,
+and terminal costs $(1/5,1/5)$. Both stages are collectable, $q_0=0$,
+and the same nine coupling settings are included in the audit.
+Both initial indices are $1/2$; ties favor $A$.
+The positive regret in Table~\ref{tab:robustness-bounds} demonstrates the loss
+of exact optimality under sharing, while each displayed bound covers that regret.
+
+\paragraph{Shared nuisance.}
+Outside the 453-cell audit, let the paths be $(U,R_A)$ and $(U,R_B)$, where
+$U$ is a shared fair bit and $R_A,R_B$ are independent
+$\operatorname{Bernoulli}(4/5)$ rewards, also independent of $U$.
+First readings are noncollectable at cost $1/100$; terminals are collectable
+at cost $1/5$. The shared bit changes predictions of another noncollectable
+reading but leaves local continuation values unchanged.
+The call envelope is zero, the index is optimal with utility $177/250$, and
+the uniform path-TV bound is $28/5$. Root joint/product TV is $1/2$, a different
+quantity from the posterior marginal shifts in the path-TV envelope.
+The control isolates why local-value changes, rather than all remaining-path
+changes, are the discrepancy relevant to the bound.
+
+\paragraph{Concentration sweep.}
+Also outside the audit, the 12 base models are reused at full component
+contrast ($\lambda=1$) with all four collection choices, and only the prior
+$p=\Prob(\Theta=1)$ is varied over $\{1/2,1/4,1/10,1/40,1/160\}$: 240 cells
+in which the belief about the binary component concentrates while the
+component laws, reliabilities, costs and collection stay fixed, each running
+the same exact audit as the grid. For this binary component, $\eta_i$ at the
+root is $2p(1-p)$ times the component separation of the next reading
+(Corollary~\ref{cor:component}). Table~\ref{tab:concentration} reports, for
+each prior, the largest regret and the largest uniform call and path-TV bounds
+over its 48 cells. Among the tested priors, regret is positive only at $p=1/2$,
+and the largest uniform bounds fall by more than an order of magnitude from
+$p=1/2$ to $p=1/160$. The bounds remain conservative. Their decrease is an
+observed property of this prior-sensitivity calculation on fixed finite laws;
+the corollary requires control of dispersion over all feasible future histories,
+in addition to concentration at the root.
+
+\begin{table}[htb]
+\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+Prior $p$ & $2p(1-p)$ & Positive-regret cells & Max regret & Max call bound & Max path-TV bound \\
+\midrule
+$1/2$ & 0.5000 & 4 & 0.00698 & 0.896 & 2.015 \\
+$1/4$ & 0.3750 & 0 & 0.00000 & 0.715 & 1.680 \\
+$1/10$ & 0.1800 & 0 & 0.00000 & 0.446 & 1.070 \\
+$1/40$ & 0.0488 & 0 & 0.00000 & 0.166 & 0.398 \\
+$1/160$ & 0.0124 & 0 & 0.00000 & 0.046 & 0.111 \\
+\bottomrule
+\end{tabular}
+\caption{Concentration sweep over the prior of the binary component: the 12
+base models at full contrast and all four collection choices, 48 cells per row.
+Regret and the uniform bounds are row maxima; each cell's bounds maximize over
+all feasible histories. The factor $2p(1-p)$ describes the root belief in
+Corollary~\ref{cor:component}. Exact values are rounded.}
+\label{tab:concentration}
+\end{table}
+
+\begin{table}[htb]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Instance & Regret & Refined (oracle) & Call & Path-TV \\
+\midrule
+Witness, $\lambda=1/10$ & 0.000024 & 0.000156 & 0.002142 & 0.012600 \\
+Witness, $\lambda=1$ & 0.001700 & 0.014900 & 0.214158 & 1.260000 \\
+Shared nuisance & 0.000000 & 0.000000 & 0.000000 & 5.600000 \\
+\bottomrule
+\end{tabular}
+\caption{Checks of the sharing bound under specified joint laws. Refined uses
+the true optimal policy occupancy in~\eqref{eq:sharing-refined}; Call and Path-TV
+are uniform $2H\bar\varepsilon$ bounds. Values are rounded to six decimals.
+The nuisance control is outside the 453-cell audit.}
+\label{tab:robustness-bounds}
+\end{table}

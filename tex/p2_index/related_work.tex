@@ -1,0 +1,48 @@
+\subsection{Related work}
+\label{sec:related}
+
+Multi-stage inspection has a reservation-index theory. \citet[Appendix~G]{kleinberg2016descending}
+give generalized strike prices and \citet[Section~4, Definition~4]{bowers2024nested} a
+constructive nested-index and capped-value recursion, both for terminal-only collection;
+the latter also explicitly allow later costs to depend on preceding signals
+\citep[Section~4.1]{bowers2024nested}.
+\citet{gupta2019markovian} treat independent Markov inspection processes with rewards at
+destination states, nonnegative prices and unbounded depth, of which the fixed-depth
+positive-cost case is recovered here; \citet{boodaghians2023order} handle independent rewards
+under line or tree precedence. Closest for intermediate collection is
+\citet[Theorem~4.4]{yang2025markovian}: each reward on a Markov line is collectable, probing
+costs are fixed, and the optimal policy selects the line with largest generalized reservation
+value. With positive costs that is the corresponding special case here; their finite-support
+dynamic program and our history-state covered-call construction are different
+representations. The superprocess literature supplies sufficient conditions for an index
+theorem \citep{whittle1980gittins,glazebrook1982whittle,scully2025gittins};
+Appendix~\ref{app:remarks} identifies that condition for this model. More general Markov
+search, in which a process offers a choice of actions, need not admit an index policy
+\citep{glazebrook1982whittle,scully2025gittins}; one-shot search with an optional partial
+inspection has none and is NP-hard \citep{aouad2025sequential}, as is combinatorial Markov
+search \citep{bowers2026cms}.
+
+Correlated search is also established: learning and approximation from joint-distribution
+samples \citep{chawla2020correlations}, the reduction of fully adaptive correlated search to
+Uniform Decision Tree \citep{chawla2023adaptivecorrelations}, correlation-aware reservation
+rules \citep{gergatsouli2023weitzman}, and a tight factor four against the best partially
+adaptive policy for a minimization objective \citep{bansal2025correlated}. Those approximation
+factors do not transfer to our reward-minus-cost objective, and the correlated-BO stopping
+guarantee of \citet{xie2025coststop}, no worse than stopping after one evaluation, is a
+different kind of statement from Bellman optimality. In Bayesian optimization, PBGI is the
+single-stage predecessor \citep{xie2024pbgi}; freeze-thaw and fidelity-aware surrogates
+\citep{swersky2014,klein2017fabolas} motivate staged observation models; trace-aware knowledge
+gradient \citep{wu2019takg}, successive halving and Hyperband
+\citep{jamieson2016sh,li2018hyperband} allocate resources by other means. For this utility in
+fixed-pool freeze-thaw optimization, \citet{vu2026coststop} analyze the one-step rule, expected
+improvement stopping, and a certified two-step correction; the present paper gives the exact
+index for the independent-arm staged problem.
+
+\paragraph{Organization.}
+Section~\ref{sec:setting} defines the model. Section~\ref{sec:main} states the
+covered-call recursion, the index theorem and the loss decomposition, with
+proofs; Sections~\ref{sec:comparative} and~\ref{sec:robust} treat comparative
+statics and information sharing. Section~\ref{sec:validation} summarizes the
+exact numerical verification, whose retained models, checks and results are in
+Appendix~\ref{app:experiments}, and Section~\ref{sec:limitations} concludes.
+Algorithm~\ref{alg:staged-index} gives the policy implementation in the main text.

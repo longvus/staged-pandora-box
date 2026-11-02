@@ -1,0 +1,43 @@
+{
+  "cells": 660,
+  "transitions": {
+    "collectable_set": 440,
+    "terminal_cost": 528,
+    "signal_cost": 495,
+    "cost_family": 300
+  },
+  "transitions_total": 1763,
+  "formula_failures": 0,
+  "terminal_index_planning": {
+    "mixed/cells": 220,
+    "mixed/zero_loss": 133,
+    "mixed/full_loss": 50,
+    "all/cells": 220,
+    "all/zero_loss": 70,
+    "all/full_loss": 51
+  },
+  "resumption": {
+    "constant_cost/cells": 300,
+    "constant_cost/positive": 76,
+    "constant_cost/bound_tight": 17,
+    "history_cost/cells": 300,
+    "history_cost/positive": 59,
+    "history_cost/bound_tight": 13,
+    "deterministic/cells": 60,
+    "deterministic/positive": 0,
+    "deterministic/bound_tight": 0
+  },
+  "resumption_max_gap": {
+    "constant_cost": "443/40960",
+    "history_cost": "801/51200",
+    "deterministic": "0"
+  },
+  "resumption_mean_gap": {
+    "constant_cost": "530693/491520000",
+    "history_cost": "1018703/983040000",
+    "deterministic": "0"
+  },
+  "random_pairs": 60,
+  "elapsed_seconds": 5.518915791995823,
+  "completed_at_utc": "2026-11-02T05:49:48.541942+00:00"
+}

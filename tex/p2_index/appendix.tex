@@ -1,0 +1,31 @@
+\section{Index Computation}
+\label{app:computation}
+
+\subsection{Conditional-law calculations}
+Algorithm~\ref{alg:staged-index} constructs each covered-call law by backward
+recursion. For discrete $W$, sorting its finite atoms and sweeping their
+cumulative mass and first moment solves the piecewise-linear reservation
+equation exactly. These calculations integrate over hypothetical futures;
+an actual advance does not disclose $W$ or $Z$.
+
+Continuous reading laws require integration or approximation; no
+numerical-integration error guarantee is added here.
+
+\subsection{Finite-tree complexity}
+An arm with $T$ remaining stages and $J$ possible next observations is a depth-$T$ observation
+tree. At a node with $t$ observations taken, $W$ has at most $J^{T-t}$ atoms. Sorting them and
+sweeping cumulative probability and first moment solves the piecewise-linear reservation
+equation exactly for a discrete law. A direct implementation sorting at each node has the
+conservative bound $O(T^2 J^T\log(1+J))$ for these atom operations, excluding evaluation of the
+predictive kernels. Sorted-list merging can avoid repeated sorting, but no such improvement is
+needed for the present guarantees. Here $J\ge1$ is an upper bound on the number of
+next observations; using $\log(1+J)$ includes deterministic branches. For $J\ge2$,
+the bound is exponential in $T$. The index separates
+the arms rather than solving their joint Bellman problem; it does not remove the need to
+integrate each arm's possible future histories. The cost of evaluating predictive kernels must also be included when measuring decision time.
+
+\paragraph{Code and archived checks.}
+The code, records and verification scripts are at
+\url{https://github.com/longvus/staged-pandora-box}; its
+\path{next_paper/P2_REPRODUCIBILITY.md} identifies the reference solvers,
+protocols, archived records and validation commands.

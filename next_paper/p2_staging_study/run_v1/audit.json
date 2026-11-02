@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "cells": 660,
+  "exact_failures": 0,
+  "complete_declared_grid": true,
+  "frozen_sources_unchanged": true,
+  "rational_policy_accounting": true,
+  "collection_expansion_monotone": true,
+  "figures": [
+    "staging_signal_utility",
+    "staging_cost_grid",
+    "staging_initial_indices",
+    "staging_deterministic_controls"
+  ],
+  "reporter_sha256": "c3f9aacdb4e08178af3c24c6682016d8a079550f00b35e12b93786e488cb25fb",
+  "records_sha256": "8ade7fe834e99e8fba405159b02baaadd00323cd4c9ba7dcae6e67bbefbd6dd0"
+}
