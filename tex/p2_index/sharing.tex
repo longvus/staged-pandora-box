@@ -1,15 +1,13 @@
 \section{Limits and Stability of the Index under Sharing}
 \label{sec:robust}
 
-Sections~\ref{sec:main} and~\ref{sec:comparative} assumed a per-arm planning law. This section
-asks how far their guarantees extend when observations are shared: two results mark where
-index optimality ends, and a regret bound shows when the index remains near-optimal.
-Under the general law of Assumption~\ref{assm:standing}, define
-$G_i(S)=G_i^{(\nu_i)}(S)$ by advancing only $i$ from the current history; other arms'
-observations stay fixed along this hypothetical run, so the local recursion still applies,
-and the index policy recomputes these indices after each actual observation. Shared
-observations can change untouched arms' laws; freezing hyperparameters does not restore
-independence.
+Sections~\ref{sec:main} and~\ref{sec:comparative} assumed a per-arm planning law. Under
+sharing, two results mark where index optimality ends, and a regret bound shows when the index
+remains near-optimal. Costs are those of Assumption~\ref{assm:standing}: an arm's next cost may
+depend on every arm's history. Define $G_i(S)=G_i^{(\nu_i)}(S)$ by advancing only $i$ from the
+current history, with other arms' observations, and their effect on $i$'s costs, fixed along
+this hypothetical run; the index policy recomputes these indices after each observation. Shared observations can change untouched arms' laws and costs;
+freezing hyperparameters does not restore independence.
 
 \begin{proposition}[No universally optimal own-arm-law policy]\label{prop:no-local}
 There are two instances with the same incumbent, costs, available stages and separate laws of
@@ -39,10 +37,8 @@ $p\in(\tau_1,\tau_2(c))\cup(\tau_3(c),1)$. If it is not collectable, whether or 
 advancing $A$ is the uniquely optimal first action for every $p\in(0,1)$.
 \end{proposition}
 
-In the construction, arm $A$ has the higher terminal success probability in one
-latent state, while $B$ offers the larger usable intermediate score. Keeping that score adds an
-option to avoid a terminal inspection; its value competes with terminal reward
-and information through the subsequent decisions.
+In the construction, keeping $B$'s larger intermediate score adds an option to avoid a terminal
+inspection, which competes with $A$'s terminal reward and information.
 
 A prior-dependent change of first inspection already occurs in
 one-shot interdependent search \citep[Example~1]{bao2026interdependent}. The family,
@@ -55,24 +51,25 @@ over the cost interval.
 A quantitative guarantee follows by specializing approximate-planning bounds
 \citep[Theorem~9 and Remark~11]{subramanian2022ais} to the independent value representation.
 Restrict further: all readings are coordinates of complete arm paths with one fixed joint law
-$\mathsf P$, predictions are its conditional laws, and each arm's next cost depends only on
-its own observed history. Dependence within and across paths is arbitrary; cross-arm cost
-changes are excluded. Let $\mathsf P_{j,S}$ be the posterior marginal law of arm $j$'s
-remaining path at $S$, $Z_j^S$ its covered call under that law, and
-$v_{j,S}(r)=\E_{\mathsf P_{j,S}}\max\{r,Z_j^S\}$ its local keep-or-run value. For the actual
+$\mathsf P$, and predictions are its conditional laws; dependence within and across paths is
+arbitrary. For arm $j$ at $S$, let $c_{j,S}(s)$ be the cost of its next stage once only $j$ has
+advanced from $S$ to own state $s$, as in the runs defining $G_j(S)$. Let $\mathsf P_{j,S}$ be
+the posterior marginal law of arm $j$'s remaining path at $S$, $Z_j^S$ its covered call under
+that law and the costs $c_{j,S}$, and $v_{j,S}(r)=\E_{\mathsf P_{j,S}}\max\{r,Z_j^S\}$ its local
+keep-or-run value. For the actual
 successor $S'=F(S,i,Y)$, the discrepancy
 \[
  \varepsilon_i(S)=\E\!\left[
    \sum_{j\ne i}\sup_{r\in[q(S'),y_{\max}]}
        |v_{j,S'}(r)-v_{j,S}(r)|\,\middle|\,S,i\right]
 \]
-measures how much an observation changes untouched arms' local values; each supremum is the
+measures how much an observation changes untouched arms' local values, through their laws
+and their costs; each supremum is the
 stop-loss metric between the two capped variables clipped at the new incumbent
 \citep[Section~5, Example~C]{muller1997ipm}.
 
 \begin{proposition}[Index regret under sharing]\label{prop:sharing-robustness}
-Under Assumption~\ref{assm:standing} and the coherent-law/local-cost restriction
-above, let $H=L(S_0)$. If $\varepsilon_i(S)\le\bar\varepsilon$ almost surely
+Under Assumption~\ref{assm:standing} and the coherent-law restriction above, let $H=L(S_0)$. If $\varepsilon_i(S)\le\bar\varepsilon$ almost surely
 along every admissible policy from $S_0$, then the policy $\pi_{\rm IX}$,
 recomputed from the true posterior marginal laws after every observation, satisfies
 \[
@@ -81,7 +78,9 @@ recomputed from the true posterior marginal laws after every observation, satisf
 \end{proposition}
 
 The bound covers premature stops and incorrect advances and needs no separation between
-indices; under independence $\varepsilon_i=0$, recovering Theorem~\ref{thm:index}. The
+indices. With independent paths and own-history costs $\varepsilon_i=0$, recovering
+Theorem~\ref{thm:index}; a cost that moves with another arm's reading enters $\varepsilon_i$
+even when the paths are independent. The
 envelope $\bar\varepsilon$ measures how one reading moves the untouched arms' local
 keep-or-run values above the new incumbent, not correlation: a shared nuisance that shifts
 remaining-path laws without moving those values leaves it at zero
@@ -91,7 +90,7 @@ is insufficient: in Appendix~\ref{app:sharing-robustness} arm paths are pairwise
 at the root and every root envelope is zero, yet the index stops while buying a signal has
 positive value. The bound controls neither posterior misspecification nor numerical index
 error; Appendix~\ref{app:sharing-robustness} proves it through an explicit signed sharing
-correction and gives a path-total-variation envelope.
+correction and gives an envelope through path total variation and cost changes.
 
 \paragraph{Sharing through a learned common component.}
 In Bayesian optimization, sharing typically flows through a component common to all
@@ -108,15 +107,19 @@ be the \emph{sensitivity} of arm $j$'s remaining path to the component and the p
 \emph{dispersion} of arm $i$'s next reading, with
 $\operatorname{TV}(\mu,\nu)=\sup_A|\mu(A)-\nu(A)|$, and let
 $B_j(S)=y_{\max}-y_{\min}+\nu_j(S)c_{\max}$ if arm $j$ has a collectable stage left and
-$B_j(S)=0$ otherwise. Assume the sensitivities $\Lambda_j(S)$ are measurable;
+$B_j(S)=0$ otherwise. Let each cost be a posterior mean
+$c_{j,S}(s)=\E[k_j(\Theta,s)\mid S,s]$ of a measurable component cost
+$k_j\in[c_{\min},c_{\max}]$, and let $\Lambda^c_j(S)=\sup|k_j(\vartheta,s)-k_j(\vartheta',s)|$
+over components and arm $j$'s continuation states, or zero if no collectable stage is left.
+Assume the sensitivities are measurable;
 this is automatic for a finite component space.
 
 \begin{corollary}[Learned common component]\label{cor:component}
-Under Assumption~\ref{assm:standing} and the coherent-law and arm-local-cost restriction of Proposition~\ref{prop:sharing-robustness}, with arm paths conditionally independent given $\Theta$,
+Under Assumption~\ref{assm:standing} and the coherent-law restriction of Proposition~\ref{prop:sharing-robustness}, with arm paths conditionally independent given $\Theta$ and component costs as above, write $\beta_j=B_j\Lambda_j+\nu_j\Lambda^c_j$. Then
 \[
- \varepsilon_i(S)\le\eta_i(S)\sum_{j\ne i}B_j(S)\Lambda_j(S),
+ \varepsilon_i(S)\le\eta_i(S)\sum_{j\ne i}\beta_j(S),
  \qquad\text{so}\qquad
- 0\le V^\star(S_0)-V_{\pi_{\rm IX}}(S_0)\le 2H\sup_{S,i}\eta_i(S)\sum_{j\ne i}B_j(S)\Lambda_j(S)
+ 0\le V^\star(S_0)-V_{\pi_{\rm IX}}(S_0)\le 2H\sup_{S,i}\eta_i(S)\sum_{j\ne i}\beta_j(S)
 \]
 over feasible states and advances. Moreover
 $\eta_i(S)\le\E_{\vartheta,\vartheta'\sim\mu_S\otimes\mu_S}
@@ -126,16 +129,13 @@ $p=\mu_S(\Theta=1)$, $\eta_i(S)=2p(1-p)\operatorname{TV}(\mathsf P_i^0(Y\in\cdot
 and $\Lambda_j(S)$ is the separation of the two component path laws.
 \end{corollary}
 
-Sensitivity measures how far a candidate's law can move with the component, dispersion how
-much one more reading can move the belief about it. For fixed horizon, reading and cost bounds,
-a vanishing uniform envelope on the right-hand side gives a vanishing regret bound.
+Sensitivity measures how far a candidate's law and costs can move with the component,
+dispersion how much one more reading can move the belief about it.
 For a finite component space, posterior mass tending to one on one component makes
 the local dispersion vanish. With continuous components, posterior concentration needs
 additional regularity, such as total-variation continuity of the next-reading kernels;
 weak concentration alone does not suffice. Either way, the envelope must be controlled at
 rare future histories whose beliefs may be less concentrated. Appendix~\ref{app:sharing-robustness} gives a noiseless
 counterexample to automatic dispersion decay.
-Mixtures of product laws are also the structure under which correlated
-one-shot search admits efficient approximation \citep{chawla2023adaptivecorrelations}.
 Appendix~\ref{app:sharing-robustness} gives the proof and Section~\ref{sec:validation} the
 checks.

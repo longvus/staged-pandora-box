@@ -1,0 +1,21 @@
+{
+  "frozen_at_utc": "2026-11-10T05:30:29.376155+00:00",
+  "models_sha256": "44ae34e7fbf5470c203b5051d3f208b5bd04ad393ce5289877709bcec8733141",
+  "lambdas": [
+    "1/5",
+    "1"
+  ],
+  "sharing": [
+    "0",
+    "1/2",
+    "1"
+  ],
+  "seed": 20261110,
+  "sources": {
+    "p2_shared_cost_check.py": "0a93cab3738a090bdd5554ecc41a027f99d634adcb30f9b8e31eb5e730598fac",
+    "p2_index_robustness.py": "1c85c0890d58daa28c0b6b9b48d6f3bcc13542a2a92525091b70be7408dde09a",
+    "staged_pandora_exact.py": "1682800b340ef37ece19fc44f149ca1fbd60847d7c1982e5c6ce75a4e1ac1386"
+  },
+  "python": "3.12.12 | packaged by conda-forge | (main, Jan 27 2026, 00:01:15) [Clang 19.1.7 ]",
+  "platform": "macOS-14.0-arm64-arm-64bit"
+}

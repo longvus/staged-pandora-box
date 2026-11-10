@@ -1,0 +1,36 @@
+{
+  "cells": 312,
+  "histories": 19512,
+  "actions": 17136,
+  "by_kind": {
+    "latent": {
+      "cells": 288,
+      "histories": 14112,
+      "actions": 12096,
+      "positive_regret": 30,
+      "max_regret": "7/1000",
+      "positive_cost_term": 192,
+      "max_call_uniform": "112/125",
+      "no_sharing_positive_cost_term": 0
+    },
+    "arbitrary": {
+      "cells": 12,
+      "histories": 2700,
+      "actions": 2520,
+      "positive_regret": 2,
+      "max_regret": "9/800",
+      "positive_cost_term": 12,
+      "max_call_uniform": "28653/11560"
+    },
+    "product": {
+      "cells": 12,
+      "histories": 2700,
+      "actions": 2520,
+      "positive_regret": 3,
+      "max_regret": "3/1075",
+      "positive_cost_term": 12,
+      "max_call_uniform": "273/230"
+    }
+  },
+  "completed_at_utc": "2026-11-10T05:30:54.080978+00:00"
+}

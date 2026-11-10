@@ -18,6 +18,7 @@ Staging grid & 660 & Index optimality and accumulated policy losses \\
 Comparative pairs & $1763+60$ & Coupled covered-call overshoot identity on grid and random pairs \\
 Shared-law audit & 453 & Signed residual, policy telescoping, and local-value/path-TV envelopes \\
 Concentration sweep & 240 & Policy accounting and sharing envelopes at five binary-component priors \\
+Shared-cost audit & 312 & The same checks with history-dependent costs \\
 \bottomrule
 \end{tabular}
 \caption{All checks pass in exact arithmetic against direct Bellman calculations.
@@ -198,9 +199,20 @@ Across the 453 cells, the signed residual, telescoping and call/TV inequalities
 hold over $24{,}309$ feasible prefixes and $21{,}042$ available advances.
 The independent controls have zero sharing envelopes and zero regret.
 Negative signed corrections occur, supporting the two-sided accounting
-in~\eqref{eq:sharing-refined}. Counts measure verification coverage;
-these known-law checks do not assess learned-surrogate accuracy or practical
-optimization performance.
+in~\eqref{eq:sharing-refined}.
+
+\paragraph{Costs that depend on the other arm.}
+A separate 312-cell audit lets costs depend on the whole history. The 12 base models at
+contrast $\lambda\in\{1/5,1\}$, with all collection choices, get terminal costs
+$k_i(\theta)=c_i(1\pm s(\theta-p))$, plus for the first arm and minus for the second, with
+$s\in\{0,1/2,1\}$; the posterior mean is paid. Twelve arbitrary and twelve independent pairs
+of binary three-stage paths (seed $20261110$) multiply each next cost by $1+x/2$, with $x$ the
+ones observed on the other arm. The checks above, agreement of the advanced arm's frozen and
+updated local problems, and the TV-plus-cost and component inequalities hold over $19{,}512$
+prefixes and $17{,}136$ advances. At $s=0$ the cost term vanishes; positive-regret cells rise
+from 4 to 14 and 12 of 96 at $s=1/2$ and $1$. Three independent-path cells have index regret,
+at most $0.0028$, which Theorem~\ref{thm:index} excludes for own-history costs; every bound
+covers it.
 
 \subsection{Positive regret, shared nuisance and concentration}
 \label{app:sharing-controls}
@@ -240,10 +252,8 @@ root is $2p(1-p)$ times the component separation of the next reading
 each prior, the largest regret and the largest uniform call and path-TV bounds
 over its 48 cells. Among the tested priors, regret is positive only at $p=1/2$,
 and the largest uniform bounds fall by more than an order of magnitude from
-$p=1/2$ to $p=1/160$. The bounds remain conservative. Their decrease is an
-observed property of this prior-sensitivity calculation on fixed finite laws;
-the corollary requires control of dispersion over all feasible future histories,
-in addition to concentration at the root.
+$p=1/2$ to $p=1/160$. The bounds remain conservative, and their decrease is a property of
+these fixed finite laws; the corollary also requires control at future histories.
 
 \begin{table}[htb]
 \centering\small

@@ -1,0 +1,8 @@
+{
+  "design_freeze.json": "53069c473fd1b30201e529fcc5408195110390dc9bb2f7afa91f7a493b7d5968",
+  "records.json": "ff3835495cf26c92653b3ba9a2a22a2a27b7669ee8cdf6448a83b3209dde9c73",
+  "source_snapshot/p2_index_robustness.py": "1c85c0890d58daa28c0b6b9b48d6f3bcc13542a2a92525091b70be7408dde09a",
+  "source_snapshot/p2_shared_cost_check.py": "0a93cab3738a090bdd5554ecc41a027f99d634adcb30f9b8e31eb5e730598fac",
+  "source_snapshot/staged_pandora_exact.py": "1682800b340ef37ece19fc44f149ca1fbd60847d7c1982e5c6ce75a4e1ac1386",
+  "summary.json": "5b720af69dbdfb2b131ae415ffe7718d5882ae399e70559d17165470786f026f"
+}

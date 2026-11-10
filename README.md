@@ -45,6 +45,7 @@ python next_paper/report_p2_staging_study.py --run next_paper/p2_staging_study/r
 python next_paper/p2_comparative_statics_study.py --out next_paper/p2_comparative_statics/rerun
 python next_paper/run_p2_index_robustness.py --out reports/shared_law_rerun       # needs PROTOCOL.md copied there
 python next_paper/p2_concentration_sweep.py --out next_paper/p2_concentration_sweep/rerun
+python next_paper/p2_shared_cost_check.py --out next_paper/p2_shared_cost_check/rerun
 python next_paper/p2_shared_law_controls.py
 python next_paper/p2_switching_certificate.py --out reports/switching_certificate_rerun.json
 ```

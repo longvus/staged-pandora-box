@@ -179,9 +179,9 @@ $p=\tau_k(c)$. The verification script and output are included with the code.
 \subsection{Signed correction and the regret bound}
 \label{app:sharing-robustness}
 
-Throughout this subsection impose the coherent-law and arm-local-cost restriction
-of Proposition~\ref{prop:sharing-robustness}. Let
-$\mathsf Q_S=\bigotimes_j \mathsf P_{j,S}$ and define
+Throughout this subsection impose the coherent-law restriction of
+Proposition~\ref{prop:sharing-robustness}. Let $\mathsf Q_S$ be the per-arm problem with path
+laws $\mathsf P_{j,S}$, independent across arms, and own-state costs $c_{j,S}$, and define
 \[
  \mathcal V_\otimes(S)=\E_{\mathsf Q_S}\max\{q(S),Z_1^S,\ldots,Z_N^S\}.
 \]
@@ -191,8 +191,10 @@ $U_\pi=V_\pi+K$ defined in Section~\ref{sec:setting}.
 
 After forcing arm $i$ and seeing $Y=y$, write $S'=F(S,i,y)$. Define
 $\mathcal V_i^{\rm fr}(S,y)$ using the new incumbent and the advanced arm's
-conditional remaining law, but retain $\mathsf P_{j,S}$ for $j\ne i$. Coherence ensures
-the advanced law equals its actual marginal at $S'$; only untouched laws differ.
+conditional remaining law, but retain $\mathsf P_{j,S}$ and $c_{j,S}$ for $j\ne i$. Coherence
+ensures the advanced law equals its actual marginal at $S'$, and its costs agree: advancing $i$
+from $S'$ is advancing it from $S$ through $y$, so $c_{i,S'}$ is $c_{i,S}$ after $y$. Only
+untouched arms' laws and costs differ.
 Put
 \begin{align}
  d_0(S)&=\mathcal V_\otimes(S)-q(S),\nonumber\\
@@ -205,7 +207,7 @@ advancing $i$ under the frozen update, and $\Gamma_i$ the signed change in
 the surrogate potential from updating untouched arms. Both signs of $\Gamma_i$
 are possible; the proof controls its magnitude.
 The losses $d_0,d_i$ are nonnegative by Theorem~\ref{thm:loss} applied to
-$\mathsf Q_S$. In particular, with
+$\mathsf Q_S$, in which advancing $i$ costs $c_{i,S}(s_i)=c(S,i)$. In particular, with
 $O_i=\max\{q,\max_{j\ne i}Z_j^S\}$ independent of arm $i$ under $\mathsf Q_S$,
 \[
  d_i=c(S,i)-\E_{\mathsf Q_S}[(W_i^S-\max\{O_i,G_i(S)\})^+].
@@ -253,7 +255,7 @@ updated distributions one arm at a time. For each replacement, condition on
 all other independent capped variables. Their maximum with the new incumbent
 is an outside option in $[q(S'),y_{\max}]$, so the absolute value change is at
 most the corresponding supremum defining $\varepsilon_i(S)$. The advanced
-arm's law is common to both products. Triangle inequality and expectation give
+arm's law and costs are common to both products. Triangle inequality and expectation give
 $|\Gamma_i(S)|\le\varepsilon_i(S)$. Each summand
 in~\eqref{eq:sharing-refined} is at most $\bar\varepsilon$ and each trajectory
 has at most $H$ advances. The two contributions are therefore at most
@@ -263,47 +265,51 @@ cost from both values does not change regret.
 
 This is the finite-horizon approximate-planning argument. In the formulation of
 \citet[Theorem~9 and Remark~11]{subramanian2022ais}, use the current marginal
-laws and own histories as the abstract state, frozen updates as the approximate
+laws, local costs and own histories as the abstract state, frozen updates as the approximate
 transition, and incremental reward $q(S')-q(S)-c(S,i)$. The approximate value
 is $\mathcal V_\otimes-q$ and its expected next-value discrepancy is exactly
-$\Gamma_i$. The envelope above specializes that discrepancy using local
-stop-loss values. The local values are $1$-Lipschitz in the outside option,
+$\Gamma_i$. The local values are $1$-Lipschitz in the outside option,
 so their supremum is measurable by using a countable dense set and the
 endpoints. Replacing $Z_j$ by $\max\{y_{\min},Z_j\}$ handles exhausted arms
 without infinite arithmetic.
 
-\paragraph{A path-total-variation envelope.}
+\paragraph{An envelope through path total variation and costs.}
 Let $D=y_{\max}-y_{\min}$ and put $B_j(S)=D+\nu_j(S)c_{\max}$ if a
-collectable stage remains, and zero otherwise. With
+collectable stage remains, and zero otherwise. Let $\Delta_j(S,S')=\sup_s|c_{j,S'}(s)-c_{j,S}(s)|$
+over arm $j$'s states reachable under $\mathsf P_{j,S'}$ with an advance left, and zero if no
+collectable stage remains; own-history costs give $\Delta_j=0$. With
 $\operatorname{TV}(\mu,\nu)=\sup_A|\mu(A)-\nu(A)|$,
 \begin{equation}
  \varepsilon_i(S)\le\varepsilon_i^{\rm TV}(S)
- =\E\!\left[\sum_{j\ne i} B_j(S)
-   \operatorname{TV}(\mathsf P_{j,S'},\mathsf P_{j,S})\,\middle|\,S,i\right].
+ =\E\!\left[\sum_{j\ne i}\bigl(B_j(S)
+   \operatorname{TV}(\mathsf P_{j,S'},\mathsf P_{j,S})+\nu_j(S)\Delta_j(S,S')\bigr)\,\middle|\,S,i\right].
  \label{eq:sharing-tv}
 \end{equation}
-With densities, our TV is half the $L^1$ distance; the convention in
-\citet[Section~3.1]{subramanian2022ais} is the full $L^1$ distance.
-The constants here use our stated convention throughout.
+Our TV is half the $L^1$ distance used by \citet[Section~3.1]{subramanian2022ais}.
 Indeed, each fixed local stopping rule, including immediate stopping, has path
 payoff $\max\{r,M_\sigma\}-\kappa_\sigma$ in
-$[y_{\min}-\nu_jc_{\max},y_{\max}]$. The same rule class is feasible under
-both marginal path laws because costs are arm-local. TV bounds each expectation
-difference by its payoff oscillation times TV, and taking the supremum over
-rules preserves the bound. Without a collectable stage, immediate stopping is
+$[y_{\min}-\nu_jc_{\max},y_{\max}]$. The rule class, stopping rules on arm $j$'s own
+readings, is the same under both marginal path laws. Under $\mathsf P_{j,S'}$, replacing the
+costs $c_{j,S'}$ by $c_{j,S}$ changes each rule's payoff by at most $\nu_j\Delta_j$, since it
+pays at most $\nu_j$ stages; TV bounds the remaining expectation difference by the payoff
+oscillation times TV, and taking the supremum over rules preserves the bound. Without a collectable stage, immediate stopping is
 optimal under both laws. This proves~\eqref{eq:sharing-tv}.
 
 \begin{proof}[Proof of Corollary~\ref{cor:component}]
 Conditional independence given $\Theta$ makes arm $j$'s remaining-path law at
 $S$ the mixture $\int\mathsf P_j^\vartheta(\cdot\mid s_j)\,\mu_S(d\vartheta)$; a reading on
 arm $i$ changes the mixing measure to $\mu_{S'}$ and leaves the components
-unchanged. Write $\mu_{S'}-\mu_S=\xi^+-\xi^-$ by the Jordan decomposition, with
-common mass $t=\operatorname{TV}(\mu_{S'},\mu_S)$. If $t=0$ the untouched
-marginal laws agree; otherwise
-$\mathsf P_{j,S'}-\mathsf P_{j,S}=t\bigl(\int\mathsf P_j^\vartheta\,d\xi^+/t-\int\mathsf P_j^\vartheta\,d\xi^-/t\bigr)$,
-and the total variation between two mixtures of the components is at most the
-largest total variation between components, so
-$\operatorname{TV}(\mathsf P_{j,S'},\mathsf P_{j,S})\le\Lambda_j(S)\,t$.
+unchanged. For a fixed local rule $\sigma$, let $g_\sigma(\vartheta)$ be the expected payoff
+$\max\{r,M_\sigma\}-\sum_u k_j(\vartheta,s_u)$ under component $\vartheta$. Each $c_{j,S}(s)$ is the posterior mean of $k_j(\Theta,s)$ and the rule's
+continuation is determined by the visited states, so the tower property gives
+$v_{j,S}(r)=\sup_\sigma\int g_\sigma\,d\mu_S$, and likewise at $S'$. Two components change
+$g_\sigma$ by at most $\beta_j=B_j\Lambda_j+\nu_j\Lambda^c_j$: the law by TV as
+in~\eqref{eq:sharing-tv}, and the costs by at most $\Lambda^c_j$ at each of at most $\nu_j$
+stages. Write $\mu_{S'}-\mu_S=\xi^+-\xi^-$ by the Jordan decomposition, with common mass
+$t=\operatorname{TV}(\mu_{S'},\mu_S)$. Then
+$\int g_\sigma\,d(\mu_{S'}-\mu_S)=t\bigl(\int g_\sigma\,d\xi^+/t-\int g_\sigma\,d\xi^-/t\bigr)$
+for $t>0$, so $\sup_r|v_{j,S'}(r)-v_{j,S}(r)|\le\beta_j(S)\,t$; without a collectable stage
+both values equal $r$.
 Next, let $J$ be the joint law of $(\Theta,Y)$ given $S,i$, let $\beta$ be
 its $Y$ marginal, and put $M=\mu_S\otimes\beta$. The finite measure $J+M$
 dominates both $J$ and $M$. Integrating the absolute difference of their
@@ -318,24 +324,22 @@ on $\Theta$, gives the total-variation disintegration identity
 \]
 Regular conditional laws exist on the stated standard Borel spaces.
 This argument applies also to singular joint laws, without assuming $J\ll M$.
-Substituting into~\eqref{eq:sharing-tv} gives the envelope, and
+Taking expectations gives the envelope, and
 Proposition~\ref{prop:sharing-robustness} the regret bound. The two-draw bound
 is the convexity inequality
 $\operatorname{TV}(\mathsf P^\vartheta,\int\mathsf P^{\vartheta'}\mu(d\vartheta'))\le\int\operatorname{TV}(\mathsf P^\vartheta,\mathsf P^{\vartheta'})\mu(d\vartheta')$.
-The binary formulas are the case of two components, computed next, in which $\varepsilon_i^{\rm TV}$ equals the displayed product.
+The binary formulas are the case of two components, computed next.
 \end{proof}
 
 If arm paths are independent conditional on binary $\Theta$, let
 $p=\mathsf P(\Theta=1\mid S)$, and let $D_i^{\rm next}$ and $D_j^{\rm path}$ be the
 TV separations of the next-reading and remaining-path laws, respectively,
-between the two latent components. Then, for $0<p<1$,
+between the two latent components. Then, for $0<p<1$, the law term
+of~\eqref{eq:sharing-tv}, which is all of $\varepsilon_i^{\rm TV}$ when $\Delta_j=0$, is
 \begin{equation}
- \varepsilon_i^{\rm TV}(S)
- =2p(1-p)D_i^{\rm next}(S)\sum_{j\ne i} B_j(S)D_j^{\rm path}(S).
+ 2p(1-p)D_i^{\rm next}(S)\sum_{j\ne i} B_j(S)D_j^{\rm path}(S).
  \label{eq:sharing-binary}
 \end{equation}
-Here $\Theta$ is an uncertain latent state under the fixed planning law,
-distinct from its fixed surrogate parameters $\theta$.
 To see this, set $p_y=\mathsf P(\Theta=1\mid S,Y_i=y)$. An untouched arm's component
 laws are unchanged, so its mixture-TV shift is
 $|p_y-p|D_j^{\rm path}$. Bayes' rule gives

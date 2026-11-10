@@ -1,7 +1,7 @@
 \begin{abstract}
 A staged search must decide which candidate to advance next and when to stop. Some observations
 only inform later decisions; others can be kept as results. We formulate these choices as a
-staged Pandora's box with a designated set of collectable stages. When each candidate's bounded
+staged Pandora's box with a designated set of collectable stages. When each candidate's
 readings and positive bounded costs depend only on its own history, an exact covered-call
 recursion gives the reservation index, the optimal value and the loss of every advance or stop;
 advancing an index-maximal candidate while its index exceeds the incumbent is optimal. The
@@ -11,10 +11,11 @@ or lowering costs raises the value by an explicit covered-call overshoot. Resump
 valuable even when future reward laws do not change, but has no value for deterministic
 readings. Information sharing limits index optimality: no rule using only the candidates'
 separate remaining-reading laws is universally optimal, and making an intermediate reading
-collectable can change which candidate is inspected first. Under a coherent joint path law with
-own-history costs, the recomputed index's regret is at most twice the horizon times a uniform
-bound on how much one reading changes other candidates' local values; this bound is zero under
-independence, need not be small under posterior concentration alone, and has a common-component
+collectable can change which candidate is inspected first. Under a coherent joint path law,
+with costs that may depend on every candidate's history, the recomputed index's regret is at
+most twice the horizon times a uniform bound on how much one reading changes other candidates'
+local values, through their laws or costs; this bound is zero under independence with
+own-history costs, need not be small under posterior concentration alone, and has a common-component
 envelope through predictive total-variation dispersion. Exact finite-law experiments check the
 representation, the loss accounting and the bounds.
 \end{abstract}
@@ -33,7 +34,7 @@ An evaluation need not reveal its result at once. A training run may be paused a
 and resumed later; a proxy evaluation may inform the decision to pay for a full one without
 being a deployable result; a learning curve may make every checkpoint a usable result. We
 represent these situations with a finite ladder per candidate and a \emph{collectable set}:
-only readings at designated stages enter the incumbent. The searcher may advance any available
+only scores at designated stages enter the incumbent. The searcher may advance any available
 candidate by one stage, return to another, or stop and keep its best collectable reading less
 the costs incurred. Staging changes both rules: selection includes resuming a paused candidate,
 and what stopping keeps depends on the collectable set.
@@ -46,7 +47,7 @@ We study the search structure on a finite candidate pool under bounded planning 
 the numerical studies verify this structure on known laws.
 
 We give an explicit covered-call representation of this problem. At a nonexhausted arm
-state $s$ with a collectable stage left, let $\Yc$ be the next stage's reading if it
+state $s$ with a collectable stage left, let $\Yc$ be the next stage's score if it
 is collectable and $-\infty$ otherwise, and let $s'$ be the successor own state.
 The recursion
 \[
@@ -82,10 +83,11 @@ latent state, the optimal first advance alternates $A,B,A,B$ in the prior when t
 arm's intermediate reading is collectable, and is always $A$ when it is not
 (Proposition~\ref{prop:switching}). These results locate the boundary of index optimality;
 they do not propose a coupled planner. Past that boundary the index is
-stable when sharing is uniformly small: for a coherent joint path law with arm-local costs,
-its regret over $H$ advances is at most $2H\bar\varepsilon$, where $\bar\varepsilon$ bounds how
-much one reading changes the untouched arms' local keep-or-run values at every feasible future
-history (Proposition~\ref{prop:sharing-robustness}); $\bar\varepsilon=0$ under independence.
+stable when sharing is uniformly small: for a coherent joint path law, its regret over $H$
+advances is at most $2H\bar\varepsilon$, where $\bar\varepsilon$ bounds how much one reading
+changes the untouched arms' local keep-or-run values, through their laws or costs, at every
+feasible future history (Proposition~\ref{prop:sharing-robustness}); $\bar\varepsilon=0$ under
+independence with own-history costs.
 Through a common component, sensitivity times predictive total-variation dispersion bounds
 these changes (Corollary~\ref{cor:component}). Small root covariance or posterior
 concentration alone is insufficient, and these conditions are not established for a general
