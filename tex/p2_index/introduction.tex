@@ -1,22 +1,22 @@
 \begin{abstract}
 A staged search must decide which candidate to advance next and when to stop. Some observations
 only inform later decisions; others can be kept as results. We formulate these choices as a
-staged Pandora's box with a designated set of collectable stages. For independent finite-stage
-candidates with bounded readings and positive bounded own-history costs, an exact covered-call recursion gives the
-reservation index, the optimal value and the loss of every advance or stop; advancing an
-index-maximal candidate while its index exceeds the incumbent is optimal. The representation
-recovers classical single-stage search, nested inspection and the all-collectable Markov setting,
-and prices changes in the problem: enlarging the collectable set or lowering costs raises the
-value by an explicit covered-call overshoot. Resumption can be valuable even when future
-reward laws do not change, but has no value for deterministic readings. With information
-sharing across candidates, no rule using only their
+staged Pandora's box with a designated set of collectable stages. When each candidate's bounded
+readings and positive bounded costs depend only on its own history, an exact covered-call
+recursion gives the reservation index, the optimal value and the loss of every advance or stop;
+advancing an index-maximal candidate while its index exceeds the incumbent is optimal. The
+representation recovers classical single-stage search, nested inspection and the
+all-collectable Markov setting, and prices changes in the problem: enlarging the collectable set
+or lowering costs raises the value by an explicit covered-call overshoot. Resumption can be
+valuable even when future reward laws do not change, but has no value for deterministic
+readings. Information sharing limits index optimality: no rule using only the candidates'
 separate remaining-reading laws is universally optimal, and making an intermediate reading
-collectable can change which candidate is inspected first. Under a coherent joint path law
-with own-history costs, an approximate-planning bound controls the recomputed index's regret
-by changes in untouched candidates' local values; a common-component
-specialization bounds those changes through predictive total-variation dispersion.
-Exact finite-law experiments check the representation, the loss
-accounting and the bounds.
+collectable can change which candidate is inspected first. Under a coherent joint path law with
+own-history costs, the recomputed index's regret is at most twice the horizon times a uniform
+bound on how much one reading changes other candidates' local values; this bound is zero under
+independence, need not be small under posterior concentration alone, and has a common-component
+envelope through predictive total-variation dispersion. Exact finite-law experiments check the
+representation, the loss accounting and the bounds.
 \end{abstract}
 
 \section{Introduction}
@@ -69,33 +69,34 @@ We do not claim a new index theorem: the policy is consistent with classical sup
 results \citep{whittle1980gittins,glazebrook1982whittle}, and the single-stage, terminal-only
 and all-collectable Markov cases have established solutions (Section~\ref{sec:related}). Our
 contribution is the explicit recursion, value representation and action losses for designated
-collection, together with the effects of collection rights on acquisition and the local-value
-discrepancy under sharing. The construction separates information from collectable reward
+collection, together with the limits and stability of the index under sharing. The construction separates information from collectable reward
 while accommodating own-history states and costs, features already permitted in nested
 inspection models \citep[Section~4.1]{bowers2024nested}.
 
-Under a shared surrogate, one candidate's observation changes the law of the others, and
-separate arm problems omit the value of that change. Two instances with identical separate
+Information sharing marks the limits of these guarantees. Under a shared surrogate, one
+candidate's observation changes the law of the others, and separate arm problems ignore that
+change, which can raise or lower the value. Two instances with identical separate
 arm laws can have different uniquely optimal first actions (Proposition~\ref{prop:no-local}),
-and collection rights reshape acquisition under sharing: in a two-arm family with a common
+and collection rights reshape acquisition: in a two-arm family with a common
 latent state, the optimal first advance alternates $A,B,A,B$ in the prior when the second
 arm's intermediate reading is collectable, and is always $A$ when it is not
-(Proposition~\ref{prop:switching}). For a coherent joint path law with arm-local costs, an
-approximate-planning bound controls the recomputed index's regret by how much untouched arms'
-local values change (Proposition~\ref{prop:sharing-robustness}); when sharing flows through a
-common component, a local envelope is the arms' sensitivity to the component times the
-predictive total-variation dispersion of one more reading (Corollary~\ref{cor:component}).
-A vanishing regret bound requires this envelope to vanish uniformly over feasible future
-histories; posterior concentration alone is insufficient. These conditions are not
-established for a general correlated Gaussian process.
+(Proposition~\ref{prop:switching}). These results locate the boundary of index optimality;
+they do not propose a coupled planner. Past that boundary the index is
+stable when sharing is uniformly small: for a coherent joint path law with arm-local costs,
+its regret over $H$ advances is at most $2H\bar\varepsilon$, where $\bar\varepsilon$ bounds how
+much one reading changes the untouched arms' local keep-or-run values at every feasible future
+history (Proposition~\ref{prop:sharing-robustness}); $\bar\varepsilon=0$ under independence.
+Through a common component, sensitivity times predictive total-variation dispersion bounds
+these changes (Corollary~\ref{cor:component}). Small root covariance or posterior
+concentration alone is insufficient, and these conditions are not established for a general
+correlated Gaussian process.
 
 \subsection{Contributions}
 \label{sec:contributions}
-We provide (i) the staged model and a covered-call recursion giving the optimal value and
-index policy under independence; (ii) exact stop and advance losses with an arbitrary-policy
-decomposition, exact comparative statics for collection rights and costs, and a bound on the
-value of resumption; (iii) under information sharing, the limits of own-arm-law policies, a
-certified family in which collection rights split the optimal first-action region, and an
-approximate-planning bound expressed through local-value changes and a common-component
-dispersion envelope; and (iv) exact finite-state checks of the value and loss identities,
-comparative statics and sharing bounds against direct Bellman optimization.
+We provide (i) the staged model and a covered-call recursion giving, for arms whose laws and
+costs depend only on their own histories, the optimal value and index policy; (ii) exact stop
+and advance losses with an arbitrary-policy decomposition, exact comparative statics for
+collection rights and costs, and a bound on the value of resumption; (iii) the limits and
+stability of the index under sharing, from the own-arm-law and switching results to the regret
+bound $2H\bar\varepsilon$ and its common-component envelope; and (iv) exact finite-state checks of
+the value and loss identities, comparative statics and sharing bounds against direct Bellman optimization.

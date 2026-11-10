@@ -36,13 +36,12 @@ gradient \citep{wu2019takg}, successive halving and Hyperband
 \citep{jamieson2016sh,li2018hyperband} allocate resources by other means. For this utility in
 fixed-pool freeze-thaw optimization, \citet{vu2026coststop} analyze the one-step rule, expected
 improvement stopping, and a certified two-step correction; the present paper gives the exact
-index for the independent-arm staged problem.
+index for the independent-arm staged problem and bounds its regret under sharing.
 
 \paragraph{Organization.}
 Section~\ref{sec:setting} defines the model. Section~\ref{sec:main} states the
 covered-call recursion, the index theorem and the loss decomposition, with
 proofs; Sections~\ref{sec:comparative} and~\ref{sec:robust} treat comparative
-statics and information sharing. Section~\ref{sec:validation} summarizes the
+statics and the limits and stability of the index under sharing. Section~\ref{sec:validation} summarizes the
 exact numerical verification, whose retained models, checks and results are in
 Appendix~\ref{app:experiments}, and Section~\ref{sec:limitations} concludes.
-Algorithm~\ref{alg:staged-index} gives the policy implementation in the main text.
